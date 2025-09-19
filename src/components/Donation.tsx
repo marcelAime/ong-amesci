@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { 
   Heart, 
   CreditCard,
@@ -26,9 +27,26 @@ const Donation = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [paystackKey, setPaystackKey] = useState("");
   const { toast } = useToast();
 
   const presetAmounts = [5000, 10000, 25000, 50000, 100000];
+
+  useEffect(() => {
+    // Fetch Paystack config on component mount
+    const fetchPaystackConfig = async () => {
+      try {
+        const { data } = await supabase.functions.invoke('paystack-config');
+        if (data?.publicKey) {
+          setPaystackKey(data.publicKey);
+        }
+      } catch (error) {
+        console.error('Error fetching Paystack config:', error);
+      }
+    };
+    
+    fetchPaystackConfig();
+  }, []);
 
   const initializePaystack = () => {
     const script = document.createElement('script');
@@ -47,6 +65,15 @@ const Donation = () => {
       return;
     }
 
+    if (!paystackKey) {
+      toast({
+        title: "Erreur de configuration",
+        description: "Service de paiement temporairement indisponible",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!window.PaystackPop) {
       initializePaystack();
       setTimeout(() => handleDonation(), 1000);
@@ -56,7 +83,7 @@ const Donation = () => {
     setIsLoading(true);
 
     const handler = window.PaystackPop.setup({
-      key: 'pk_test_your_paystack_public_key', // Remplacez par votre clé publique Paystack
+      key: paystackKey,
       email: email,
       amount: parseInt(amount) * 100, // Paystack utilise les centimes
       currency: 'XOF', // Franc CFA

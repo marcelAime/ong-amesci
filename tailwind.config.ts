@@ -105,11 +105,15 @@ export default {
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
+        "gradient-medical": "var(--gradient-medical)",
+        "gradient-accent": "var(--gradient-accent)",
         "gradient-subtle": "var(--gradient-subtle)",
+        "gradient-vibrant": "var(--gradient-vibrant)",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",
         "medical": "var(--shadow-medical)",
+        "vibrant": "var(--shadow-vibrant)",
       },
     },
   },

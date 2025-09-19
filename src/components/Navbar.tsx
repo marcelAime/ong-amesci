@@ -6,10 +6,10 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "Accueil", href: "#home" },
-    { label: "À propos", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Contact", href: "#contact" },
+    { label: "Accueil", href: "/" },
+    { label: "À propos", href: "/about" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -18,9 +18,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-hero rounded-full flex items-center justify-center">
-              <Heart className="w-6 h-6 text-white" />
-            </div>
+            <img 
+              src="https://storage.googleapis.com/gpt-engineer-file-uploads/Q4sLhJ9wpwNtwORoW2IoENyfGm43/uploads/1758293373151-ong1.jpg" 
+              alt="Logo O.N.G Santé" 
+              className="w-10 h-10 rounded-full object-cover"
+            />
             <div>
               <h1 className="text-xl font-bold text-foreground">O.N.G Santé</h1>
               <p className="text-xs text-muted-foreground">Soins de qualité accessible</p>
@@ -38,8 +40,8 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant="medical" className="ml-4">
-              Nous contacter
+            <Button variant="hero" className="ml-4" onClick={() => window.location.href = '/donation'}>
+              Faire un don
             </Button>
           </div>
 
@@ -66,8 +68,8 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <Button variant="medical" className="mt-2">
-                Nous contacter
+              <Button variant="hero" className="mt-2" onClick={() => window.location.href = '/donation'}>
+                Faire un don
               </Button>
             </div>
           </div>

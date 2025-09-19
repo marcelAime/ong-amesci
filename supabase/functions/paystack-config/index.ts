@@ -14,10 +14,19 @@ serve(async (req) => {
   try {
     const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY');
     
+    console.log('Paystack key check:', PAYSTACK_PUBLIC_KEY ? 'Key found' : 'Key not found');
+    
     if (!PAYSTACK_PUBLIC_KEY) {
-      throw new Error('Paystack public key not configured');
+      console.error('Paystack public key not configured in environment');
+      return new Response(JSON.stringify({ 
+        error: 'Paystack key not configured' 
+      }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
+    console.log('Returning Paystack key');
     return new Response(JSON.stringify({ 
       publicKey: PAYSTACK_PUBLIC_KEY 
     }), {
@@ -27,7 +36,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in paystack-config function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Configuration error' 
+      error: 'Configuration error: ' + error.message 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

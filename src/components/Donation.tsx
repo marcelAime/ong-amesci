@@ -33,8 +33,21 @@ const Donation = () => {
   const presetAmounts = [5000, 10000, 25000, 50000, 100000];
 
   useEffect(() => {
-    // Set default test key - replace with your real key
-    setPaystackKey('pk_test_f4f43d0c13566687c18b6dc35f89fc455c90a7c2');
+    // Fetch Paystack config on component mount
+    const fetchPaystackConfig = async () => {
+      try {
+        const { data } = await supabase.functions.invoke('paystack-config');
+        if (data?.publicKey) {
+          setPaystackKey(data.publicKey);
+        }
+      } catch (error) {
+        console.error('Error fetching Paystack config:', error);
+        // Fallback: try to use environment variable
+        setPaystackKey('pk_test_temp_key');
+      }
+    };
+    
+    fetchPaystackConfig();
   }, []);
 
   const initializePaystack = () => {
@@ -56,8 +69,8 @@ const Donation = () => {
 
     if (!paystackKey) {
       toast({
-        title: "Chargement en cours",
-        description: "Initialisation du système de paiement...",
+        title: "Configuration en cours",
+        description: "Chargement de la configuration de paiement...",
       });
       return;
     }

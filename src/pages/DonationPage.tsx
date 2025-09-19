@@ -3,10 +3,17 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Heart, Users, Stethoscope, Home, Gift, Star } from "lucide-react";
-import { useState } from "react";
-import { toast } from "sonner";
+import { Heart, Users, Stethoscope, Home, Gift, Star, CreditCard, Shield } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 import { Helmet } from "react-helmet-async";
+
+declare global {
+  interface Window {
+    PaystackPop: any;
+  }
+}
 
 const DonationPage = () => {
   const [amount, setAmount] = useState("");
@@ -17,6 +24,8 @@ const DonationPage = () => {
     message: ""
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [paystackKey, setPaystackKey] = useState("");
+  const { toast } = useToast();
 
   const predefinedAmounts = [5000, 10000, 25000, 50000, 100000, 250000];
 
@@ -47,46 +56,159 @@ const DonationPage = () => {
     }
   ];
 
-  const handleDonation = async () => {
+  useEffect(() => {
+    // Fetch Paystack config on component mount
+    const fetchPaystackConfig = async () => {
+      try {
+        console.log('Tentative de récupération de la clé Paystack...');
+        const { data, error } = await supabase.functions.invoke('paystack-config');
+        console.log('Réponse Paystack config:', { data, error });
+        
+        if (error) {
+          console.error('Erreur lors de la récupération de la config:', error);
+          toast({
+            title: "Erreur de configuration",
+            description: "Impossible de charger la configuration de paiement",
+            variant: "destructive",
+          });
+          return;
+        }
+        
+        if (data?.publicKey) {
+          console.log('Clé Paystack récupérée avec succès:', data.publicKey.substring(0, 20) + '...');
+          setPaystackKey(data.publicKey);
+          initializePaystack(); // Initialiser Paystack dès qu'on a la clé
+        } else {
+          console.error('Pas de clé publique dans la réponse:', data);
+          toast({
+            title: "Configuration manquante",
+            description: "Clé Paystack non configurée",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération de la config Paystack:', error);
+        toast({
+          title: "Erreur réseau",
+          description: "Impossible de contacter le service de configuration",
+          variant: "destructive",
+        });
+      }
+    };
+    
+    fetchPaystackConfig();
+  }, []);
+
+  const initializePaystack = () => {
+    const script = document.createElement('script');
+    script.src = 'https://js.paystack.co/v1/inline.js';
+    script.async = true;
+    document.head.appendChild(script);
+  };
+
+  const handleDonation = () => {
+    console.log('Tentative de donation avec:', { amount, donorInfo, paystackKey: paystackKey?.substring(0, 20) + '...' });
+    
     if (!amount || parseFloat(amount) < 500) {
-      toast.error("Le montant minimum est de 500 FCFA");
+      toast({
+        title: "Montant invalide",
+        description: "Le montant minimum est de 500 FCFA",
+        variant: "destructive",
+      });
       return;
     }
 
     if (!donorInfo.name || !donorInfo.email) {
-      toast.error("Veuillez remplir les champs obligatoires");
+      toast({
+        title: "Champs requis",
+        description: "Veuillez remplir tous les champs obligatoires",
+        variant: "destructive",
+      });
       return;
     }
 
+    if (!paystackKey) {
+      console.error('Pas de clé Paystack disponible');
+      toast({
+        title: "Configuration manquante",
+        description: "La clé de paiement n'est pas configurée. Veuillez recharger la page.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (!window.PaystackPop) {
+      console.log('PaystackPop non disponible, initialisation...');
+      initializePaystack();
+      setTimeout(() => handleDonation(), 2000);
+      return;
+    }
+
+    console.log('Lancement du processus de paiement Paystack...');
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/donations/initialize', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const handler = window.PaystackPop.setup({
+        key: paystackKey,
+        email: donorInfo.email,
+        amount: parseFloat(amount) * 100, // Paystack utilise les centimes
+        currency: 'XOF', // Franc CFA
+        ref: 'ong_donation_' + Date.now(),
+        metadata: {
+          donor_name: donorInfo.name,
+          donor_phone: donorInfo.phone,
+          message: donorInfo.message,
+          custom_fields: [
+            {
+              display_name: "Nom du donateur",
+              variable_name: "donor_name",
+              value: donorInfo.name
+            },
+            {
+              display_name: "Téléphone",
+              variable_name: "donor_phone", 
+              value: donorInfo.phone
+            }
+          ]
         },
-        body: JSON.stringify({
-          amount: parseFloat(amount) * 100, // Convert to kobo
-          email: donorInfo.email,
-          name: donorInfo.name,
-          phone: donorInfo.phone,
-          message: donorInfo.message
-        }),
+        callback: function(response: any) {
+          console.log('Paiement réussi:', response);
+          toast({
+            title: "Don réussi !",
+            description: `Merci ${donorInfo.name} pour votre générosité. Référence: ${response.reference}`,
+          });
+          
+          // Reset form
+          setAmount("");
+          setDonorInfo({
+            name: "",
+            email: "", 
+            phone: "",
+            message: ""
+          });
+          setIsLoading(false);
+        },
+        onClose: function() {
+          console.log('Paiement fermé par l\'utilisateur');
+          setIsLoading(false);
+          toast({
+            title: "Transaction annulée",
+            description: "Votre don n'a pas été traité",
+            variant: "destructive",
+          });
+        }
       });
-
-      const data = await response.json();
-
-      if (data.success && data.authorization_url) {
-        window.location.href = data.authorization_url;
-      } else {
-        throw new Error(data.message || 'Erreur lors de l\'initialisation du paiement');
-      }
+      
+      console.log('Ouverture de l\'iframe Paystack...');
+      handler.openIframe();
     } catch (error) {
-      console.error('Donation error:', error);
-      toast.error("Erreur lors de l'initialisation du don. Veuillez réessayer.");
-    } finally {
+      console.error('Erreur lors de l\'initialisation du paiement:', error);
       setIsLoading(false);
+      toast({
+        title: "Erreur de paiement",
+        description: "Impossible d'initialiser le système de paiement. Veuillez réessayer.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -247,6 +369,12 @@ const DonationPage = () => {
                   </div>
                 </div>
 
+                {/* Security Info */}
+                <div className="flex items-center gap-2 mb-6">
+                  <Shield className="w-5 h-5 text-primary" />
+                  <span className="text-sm text-muted-foreground">Paiement sécurisé avec Paystack</span>
+                </div>
+
                 {/* Donation Button */}
                 <Button
                   onClick={handleDonation}
@@ -255,12 +383,19 @@ const DonationPage = () => {
                   className="w-full text-lg h-14"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Traitement en cours..." : `Faire un don de ${amount ? parseFloat(amount).toLocaleString() : '0'} FCFA`}
-                  <Heart className="w-5 h-5 ml-2" />
+                  {isLoading ? (
+                    "Traitement en cours..."
+                  ) : (
+                    <>
+                      <CreditCard className="w-5 h-5 mr-2" />
+                      Faire un don de {amount ? parseFloat(amount).toLocaleString() : '0'} FCFA
+                    </>
+                  )}
                 </Button>
 
                 <p className="text-sm text-muted-foreground text-center mt-4">
-                  Paiement sécurisé via Paystack. Vous recevrez un reçu par email.
+                  Vos informations de paiement sont sécurisées par Paystack.
+                  Vous recevrez un reçu par email après votre don.
                 </p>
               </Card>
             </div>

@@ -36,14 +36,39 @@ const Donation = () => {
     // Fetch Paystack config on component mount
     const fetchPaystackConfig = async () => {
       try {
-        const { data } = await supabase.functions.invoke('paystack-config');
+        console.log('Tentative de récupération de la clé Paystack...');
+        const { data, error } = await supabase.functions.invoke('paystack-config');
+        console.log('Réponse Paystack config:', { data, error });
+        
+        if (error) {
+          console.error('Erreur lors de la récupération de la config:', error);
+          toast({
+            title: "Erreur de configuration",
+            description: "Impossible de charger la configuration de paiement",
+            variant: "destructive",
+          });
+          return;
+        }
+        
         if (data?.publicKey) {
+          console.log('Clé Paystack récupérée avec succès:', data.publicKey.substring(0, 20) + '...');
           setPaystackKey(data.publicKey);
+          initializePaystack(); // Initialiser Paystack dès qu'on a la clé
+        } else {
+          console.error('Pas de clé publique dans la réponse:', data);
+          toast({
+            title: "Configuration manquante",
+            description: "Clé Paystack non configurée",
+            variant: "destructive",
+          });
         }
       } catch (error) {
-        console.error('Error fetching Paystack config:', error);
-        // Fallback: try to use environment variable
-        setPaystackKey('pk_test_temp_key');
+        console.error('Erreur lors de la récupération de la config Paystack:', error);
+        toast({
+          title: "Erreur réseau",
+          description: "Impossible de contacter le service de configuration",
+          variant: "destructive",
+        });
       }
     };
     
@@ -58,6 +83,8 @@ const Donation = () => {
   };
 
   const handleDonation = () => {
+    console.log('Tentative de donation avec:', { amount, donorName, email, paystackKey: paystackKey?.substring(0, 20) + '...' });
+    
     if (!amount || !donorName || !email) {
       toast({
         title: "Champs requis",
@@ -68,62 +95,79 @@ const Donation = () => {
     }
 
     if (!paystackKey) {
+      console.error('Pas de clé Paystack disponible');
       toast({
-        title: "Configuration en cours",
-        description: "Chargement de la configuration de paiement...",
+        title: "Configuration manquante",
+        description: "La clé de paiement n'est pas configurée. Veuillez recharger la page.",
+        variant: "destructive",
       });
       return;
     }
 
     if (!window.PaystackPop) {
+      console.log('PaystackPop non disponible, initialisation...');
       initializePaystack();
-      setTimeout(() => handleDonation(), 1000);
+      setTimeout(() => handleDonation(), 2000);
       return;
     }
 
+    console.log('Lancement du processus de paiement Paystack...');
     setIsLoading(true);
 
-    const handler = window.PaystackPop.setup({
-      key: paystackKey,
-      email: email,
-      amount: parseInt(amount) * 100, // Paystack utilise les centimes
-      currency: 'XOF', // Franc CFA
-      ref: 'ong_donation_' + Date.now(),
-      metadata: {
-        donor_name: donorName,
-        message: message,
-        custom_fields: [
-          {
-            display_name: "Nom du donateur",
-            variable_name: "donor_name",
-            value: donorName
-          }
-        ]
-      },
-      callback: function(response: any) {
-        toast({
-          title: "Don réussi !",
-          description: `Merci ${donorName} pour votre générosité. Référence: ${response.reference}`,
-        });
-        
-        // Reset form
-        setAmount("");
-        setDonorName("");
-        setEmail("");
-        setMessage("");
-        setIsLoading(false);
-      },
-      onClose: function() {
-        setIsLoading(false);
-        toast({
-          title: "Transaction annulée",
-          description: "Votre don n'a pas été traité",
-          variant: "destructive",
-        });
-      }
-    });
-    
-    handler.openIframe();
+    try {
+      const handler = window.PaystackPop.setup({
+        key: paystackKey,
+        email: email,
+        amount: parseInt(amount) * 100, // Paystack utilise les centimes
+        currency: 'XOF', // Franc CFA
+        ref: 'ong_donation_' + Date.now(),
+        metadata: {
+          donor_name: donorName,
+          message: message,
+          custom_fields: [
+            {
+              display_name: "Nom du donateur",
+              variable_name: "donor_name",
+              value: donorName
+            }
+          ]
+        },
+        callback: function(response: any) {
+          console.log('Paiement réussi:', response);
+          toast({
+            title: "Don réussi !",
+            description: `Merci ${donorName} pour votre générosité. Référence: ${response.reference}`,
+          });
+          
+          // Reset form
+          setAmount("");
+          setDonorName("");
+          setEmail("");
+          setMessage("");
+          setIsLoading(false);
+        },
+        onClose: function() {
+          console.log('Paiement fermé par l\'utilisateur');
+          setIsLoading(false);
+          toast({
+            title: "Transaction annulée",
+            description: "Votre don n'a pas été traité",
+            variant: "destructive",
+          });
+        }
+      });
+      
+      console.log('Ouverture de l\'iframe Paystack...');
+      handler.openIframe();
+    } catch (error) {
+      console.error('Erreur lors de l\'initialisation du paiement:', error);
+      setIsLoading(false);
+      toast({
+        title: "Erreur de paiement",
+        description: "Impossible d'initialiser le système de paiement. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (

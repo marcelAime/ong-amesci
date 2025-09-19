@@ -32,12 +32,23 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button variant="hero" size="lg" className="group">
-                Nos services
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <Button 
+                variant="hero" 
+                size="lg" 
+                className="group"
+                onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Faire un don
+                <Heart className="w-4 h-4 group-hover:scale-105 transition-transform" />
               </Button>
-              <Button variant="outline" size="lg">
-                En savoir plus
+              <Button 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.open('https://wa.me/2250759950823', '_blank')}
+                className="group"
+              >
+                WhatsApp
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
 

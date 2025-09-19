@@ -57,9 +57,10 @@ HORAIRES:
 - Urgences disponibles 24h/24
 
 CONTACT:
-- Téléphone: +225 XX XX XX XX XX
+- Téléphone: +225 0759950823
 - Email: contact@ongsante.ci
-- Urgences: +225 XX XX XX XX XX
+- Urgences: +225 0759950823
+- WhatsApp: +225 0759950823
 
 Tu dois:
 1. Répondre aux questions sur l'ONG de manière informative et bienveillante
@@ -99,7 +100,7 @@ Réponds de manière concise et utile.`
   } catch (error) {
     console.error('Error in chatbot function:', error);
     return new Response(JSON.stringify({ 
-      error: 'Une erreur est survenue. Notre équipe est là pour vous aider au +225 XX XX XX XX XX' 
+      error: 'Une erreur est survenue. Notre équipe est là pour vous aider au +225 0759950823' 
     }), {
       status: 200, // Return 200 to avoid showing error to user
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

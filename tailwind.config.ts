@@ -42,10 +42,15 @@ export default {
           foreground: "hsl(var(--accent-foreground))",
           light: "hsl(var(--accent-light))",
         },
-        medical: {
-          DEFAULT: "hsl(var(--medical))",
-          foreground: "hsl(var(--medical-foreground))",
-          light: "hsl(var(--medical-light))",
+        hope: {
+          DEFAULT: "hsl(var(--hope))",
+          foreground: "hsl(var(--hope-foreground))",
+          light: "hsl(var(--hope-light))",
+        },
+        trust: {
+          DEFAULT: "hsl(var(--trust))",
+          foreground: "hsl(var(--trust-foreground))",
+          light: "hsl(var(--trust-light))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -96,23 +101,29 @@ export default {
           from: { opacity: "0", transform: "translateX(-30px)" },
           to: { opacity: "1", transform: "translateX(0)" },
         },
+        "slide-in-right": {
+          from: { opacity: "0", transform: "translateX(30px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out",
         "slide-in-left": "slide-in-left 0.5s ease-out",
+        "slide-in-right": "slide-in-right 0.5s ease-out",
       },
       backgroundImage: {
         "gradient-hero": "var(--gradient-hero)",
-        "gradient-medical": "var(--gradient-medical)",
-        "gradient-accent": "var(--gradient-accent)",
+        "gradient-hope": "var(--gradient-hope)",
+        "gradient-trust": "var(--gradient-trust)",
         "gradient-subtle": "var(--gradient-subtle)",
         "gradient-vibrant": "var(--gradient-vibrant)",
       },
       boxShadow: {
         "soft": "var(--shadow-soft)",
-        "medical": "var(--shadow-medical)",
+        "hope": "var(--shadow-hope)",
+        "trust": "var(--shadow-trust)",
         "vibrant": "var(--shadow-vibrant)",
       },
     },

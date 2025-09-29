@@ -2,13 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* AMES-CI Design System - Colors of Hope (Green) and Trust (Blue) */
 
 @layer base {
   :root {
-    /* Dynamic Health Theme - Vibrant, energetic, trustworthy */
+    /* Light theme - Professional and warm */
     --background: 0 0% 100%;
     --foreground: 222 84% 4.9%;
 
@@ -18,63 +16,64 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 4.9%;
 
-    /* Electric Blue - Modern, trustworthy, energetic */
-    --primary: 210 100% 60%;
+    /* Green - Hope and Growth */
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 210 100% 75%;
-    --primary-dark: 210 100% 45%;
+    --primary-light: 142 76% 50%;
+    --primary-dark: 142 76% 25%;
 
-    /* Vibrant secondary */
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 222 84% 4.9%;
+    /* Light Blue - Trust and Confidence */
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 240 5% 96%;
+    --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Bright Orange accent - Energy and warmth */
-    --accent: 25 95% 53%;
+    /* Accent - Complementary colors */
+    --accent: 195 100% 50%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 25 95% 65%;
+    --accent-light: 195 100% 65%;
 
-    /* Emerald Green for health/healing */
-    --medical: 142 76% 36%;
-    --medical-foreground: 0 0% 100%;
-    --medical-light: 142 76% 50%;
+    /* Hope (Green variations) */
+    --hope: 142 76% 36%;
+    --hope-foreground: 0 0% 100%;
+    --hope-light: 142 76% 50%;
+
+    /* Trust (Blue variations) */
+    --trust: 195 100% 50%;
+    --trust-foreground: 0 0% 100%;
+    --trust-light: 195 100% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 217 91% 60%;
+    --ring: 142 76% 36%;
 
-    /* Dynamic gradients and effects */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    --gradient-medical: linear-gradient(135deg, hsl(var(--medical)), hsl(var(--primary)));
-    --gradient-accent: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--primary)));
-    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--secondary)));
-    --gradient-vibrant: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--medical)));
-    --shadow-soft: 0 4px 20px -4px hsl(var(--primary) / 0.15);
-    --shadow-medical: 0 8px 35px -8px hsl(var(--primary) / 0.25);
-    --shadow-vibrant: 0 10px 40px -10px hsl(var(--accent) / 0.3);
+    /* Dynamic gradients - Hope and Trust combinations */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--hope)), hsl(var(--trust)));
+    --gradient-hope: linear-gradient(135deg, hsl(var(--hope)), hsl(120 60% 70%));
+    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(210 65% 85%));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(210 40% 98%));
+    --gradient-vibrant: linear-gradient(45deg, hsl(var(--hope)), hsl(var(--trust)), hsl(120 60% 70%));
+    
+    /* Elegant shadows with brand colors */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--hope) / 0.15);
+    --shadow-hope: 0 8px 35px -8px hsl(var(--hope) / 0.25);
+    --shadow-trust: 0 8px 35px -8px hsl(var(--trust) / 0.25);
+    --shadow-vibrant: 0 10px 40px -10px hsl(var(--hope) / 0.3);
     
     --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 6% 10%;
     --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
+    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent-foreground: 240 6% 10%;
     --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 142 76% 36%;
   }
 
   .dark {
@@ -87,39 +86,44 @@ All colors MUST be HSL.
     --popover: 215 28% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 217 91% 65%;
+    --primary: 142 76% 50%;
     --primary-foreground: 215 28% 8%;
-    --primary-light: 217 91% 75%;
-    --primary-dark: 217 91% 55%;
+    --primary-light: 142 76% 65%;
+    --primary-dark: 142 76% 35%;
 
-    --secondary: 215 25% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 195 100% 60%;
+    --secondary-foreground: 215 28% 8%;
 
     --muted: 215 25% 15%;
     --muted-foreground: 215 20% 70%;
 
-    --accent: 16 100% 70%;
+    --accent: 195 100% 60%;
     --accent-foreground: 215 28% 8%;
-    --accent-light: 16 100% 80%;
+    --accent-light: 195 100% 75%;
 
-    --medical: 184 77% 60%;
-    --medical-foreground: 215 28% 8%;
-    --medical-light: 184 77% 70%;
+    --hope: 142 76% 50%;
+    --hope-foreground: 215 28% 8%;
+    --hope-light: 142 76% 65%;
+
+    --trust: 195 100% 60%;
+    --trust-foreground: 215 28% 8%;
+    --trust-light: 195 100% 75%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 215 25% 15%;
     --input: 215 25% 15%;
-    --ring: 217 91% 65%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --ring: 142 76% 50%;
+    
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 142 76% 50%;
   }
 }
 

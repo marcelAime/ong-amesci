@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Heart, CreditCard, Smartphone, Building, Users, Banknote, Gift } from "lucide-react";
+import { Label } from "@/components/ui/label";
+import { Heart, CreditCard, Smartphone, Building, Users, Banknote, Gift, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -13,6 +14,22 @@ const Donation = () => {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState('');
   const [paymentMethod, setPaymentMethod] = useState('mobile');
+  const [email, setEmail] = useState('');
+  const [isPaystackLoaded, setIsPaystackLoaded] = useState(false);
+
+  // Vérifier que le script Paystack est chargé
+  useEffect(() => {
+    const checkPaystack = () => {
+      if ((window as any).PaystackPop) {
+        setIsPaystackLoaded(true);
+        console.log('Paystack chargé avec succès');
+      } else {
+        console.log('Paystack en cours de chargement...');
+        setTimeout(checkPaystack, 100);
+      }
+    };
+    checkPaystack();
+  }, []);
 
   const predefinedAmounts = [5000, 10000, 25000, 50000, 100000, 250000];
 
@@ -58,6 +75,7 @@ const Donation = () => {
   const handleDonate = () => {
     const amount = selectedAmount || parseFloat(customAmount);
     
+    // Validation du montant
     if (!amount || amount < 1000) {
       toast({
         title: "Montant invalide",
@@ -67,37 +85,67 @@ const Donation = () => {
       return;
     }
 
-    // Initialize Paystack payment
-    const handler = (window as any).PaystackPop.setup({
-      key: 'pk_test_ec344c48c34a15f8c96e299c71b3078ee85d0e9f',
-      email: 'donateur@ames-ci.info',
-      amount: amount * 100, // Convert to kobo/pesewas
-      currency: 'XOF',
-      ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
-      metadata: {
-        custom_fields: [
-          {
-            display_name: "Organisation",
-            variable_name: "organisation",
-            value: "AMES-CI"
-          }
-        ]
-      },
-      callback: function(response: any) {
-        toast({
-          title: "Don effectué avec succès!",
-          description: `Merci pour votre générosité. Référence: ${response.reference}`,
-        });
-      },
-      onClose: function() {
-        toast({
-          title: "Paiement annulé",
-          description: "Vous avez fermé la fenêtre de paiement",
-          variant: "destructive"
-        });
-      }
-    });
-    handler.openIframe();
+    // Validation de l'email
+    if (!email || !email.includes('@')) {
+      toast({
+        title: "Email requis",
+        description: "Veuillez entrer une adresse email valide",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    // Vérification que Paystack est chargé
+    if (!(window as any).PaystackPop) {
+      toast({
+        title: "Erreur de chargement",
+        description: "Le système de paiement n'est pas encore prêt. Veuillez réessayer dans quelques secondes.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    try {
+      // Initialize Paystack payment
+      const handler = (window as any).PaystackPop.setup({
+        key: 'pk_test_ec344c48c34a15f8c96e299c71b3078ee85d0e9f',
+        email: email,
+        amount: amount * 100, // Convert to kobo/pesewas
+        currency: 'XOF',
+        ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
+        metadata: {
+          custom_fields: [
+            {
+              display_name: "Organisation",
+              variable_name: "organisation",
+              value: "AMES-CI"
+            }
+          ]
+        },
+        callback: function(response: any) {
+          toast({
+            title: "Don effectué avec succès!",
+            description: `Merci pour votre générosité. Référence: ${response.reference}`,
+          });
+          console.log('Paiement réussi:', response);
+        },
+        onClose: function() {
+          toast({
+            title: "Paiement annulé",
+            description: "Vous avez fermé la fenêtre de paiement",
+            variant: "destructive"
+          });
+        }
+      });
+      handler.openIframe();
+    } catch (error) {
+      console.error('Erreur Paystack:', error);
+      toast({
+        title: "Erreur de paiement",
+        description: "Une erreur s'est produite. Veuillez réessayer.",
+        variant: "destructive"
+      });
+    }
   };
 
   return (
@@ -199,14 +247,43 @@ const Donation = () => {
                 </div>
               </div>
 
+              {/* Email Input */}
+              <div className="mb-8">
+                <Label htmlFor="email" className="text-lg font-semibold text-foreground mb-4 block">
+                  Votre email
+                </Label>
+                <div className="relative">
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="exemple@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="pl-12 h-14 text-lg focus:ring-hope focus:border-hope"
+                    required
+                  />
+                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-muted-foreground" />
+                </div>
+                <p className="text-sm text-muted-foreground mt-2">
+                  Votre email est requis pour confirmer votre don
+                </p>
+              </div>
+
               {/* Donate Button */}
               <Button 
                 onClick={handleDonate}
-                className="w-full h-14 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all"
+                disabled={!isPaystackLoaded}
+                className="w-full h-14 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Heart className="w-6 h-6 mr-3" />
-                Faire un don de {(selectedAmount || parseFloat(customAmount) || 0).toLocaleString()} FCFA
+                {!isPaystackLoaded ? 'Chargement...' : `Faire un don de ${(selectedAmount || parseFloat(customAmount) || 0).toLocaleString()} FCFA`}
               </Button>
+              
+              {!isPaystackLoaded && (
+                <p className="text-sm text-muted-foreground text-center mt-2">
+                  Initialisation du système de paiement...
+                </p>
+              )}
             </Card>
           </div>
 

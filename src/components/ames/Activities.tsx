@@ -11,39 +11,39 @@ const Activities = () => {
   const activities = [
     {
       icon: <GraduationCap className="w-8 h-8" />,
-      title: t('activities.training.title'),
-      description: t('activities.training.description'),
+      title: "Éducation et Formation",
+      description: "Construction d'écoles, d'universités et de centres de formation professionnelle pour offrir des opportunités d'apprentissage de qualité.",
       features: [
-        "Soudure professionnelle",
-        "Froid & Climatisation", 
-        "Menuiserie Aluminium",
-        "Couture et Broderie"
+        "Construction d'écoles et universités",
+        "Centres de formation professionnelle",
+        "Formation culturelle islamique",
+        "Orientation des élèves arabophones"
       ],
       color: "hope",
       image: professionalTraining
     },
     {
       icon: <Building className="w-8 h-8" />,
-      title: t('activities.social.title'),
-      description: t('activities.social.description'),
+      title: "Culture et Recherche",
+      description: "Promotion de la culture, des valeurs et encouragement de la recherche pour le développement intellectuel et social.",
       features: [
-        "Construction d'infrastructures",
-        "Projets communautaires",
-        "Amélioration des quartiers",
-        "Accès à l'eau potable"
+        "Promotion de la culture et des valeurs",
+        "Encouragement de la recherche",
+        "Formation continue",
+        "Préservation du patrimoine"
       ],
       color: "trust",
       image: trainingCenter
     },
     {
       icon: <HandHeart className="w-8 h-8" />,
-      title: t('activities.humanitarian.title'),
-      description: t('activities.humanitarian.description'),
+      title: "Action Sociale et Humanitaire",
+      description: "Assistance aux populations vulnérables, campagnes de sensibilisation et soutien aux personnes dans le besoin.",
       features: [
-        "Distribution de vivres",
-        "Assistance médicale",
-        "Soutien scolaire",
-        "Aide d'urgence"
+        "Assistance aux populations vulnérables",
+        "Campagnes de sensibilisation sanitaire",
+        "Lutte contre diverses maladies",
+        "Soutien aux personnes défavorisées"
       ],
       color: "hope"
     }

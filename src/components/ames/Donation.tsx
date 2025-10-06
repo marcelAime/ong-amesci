@@ -67,11 +67,37 @@ const Donation = () => {
       return;
     }
 
-    // Here you would integrate with your payment processor
-    toast({
-      title: "Redirection vers le paiement",
-      description: `Montant: ${amount.toLocaleString()} FCFA`,
+    // Initialize Paystack payment
+    const handler = (window as any).PaystackPop.setup({
+      key: 'pk_test_ec344c48c34a15f8c96e299c71b3078ee85d0e9f',
+      email: 'donateur@ames-ci.info',
+      amount: amount * 100, // Convert to kobo/pesewas
+      currency: 'XOF',
+      ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
+      metadata: {
+        custom_fields: [
+          {
+            display_name: "Organisation",
+            variable_name: "organisation",
+            value: "AMES-CI"
+          }
+        ]
+      },
+      callback: function(response: any) {
+        toast({
+          title: "Don effectué avec succès!",
+          description: `Merci pour votre générosité. Référence: ${response.reference}`,
+        });
+      },
+      onClose: function() {
+        toast({
+          title: "Paiement annulé",
+          description: "Vous avez fermé la fenêtre de paiement",
+          variant: "destructive"
+        });
+      }
     });
+    handler.openIframe();
   };
 
   return (

@@ -66,17 +66,19 @@ const About = () => {
               
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  L'ONG Ambassadeurs de l'Espoir pour des Activités du Bien-être et Développement Social (AMES-CI) 
-                  est une organisation à but non lucratif dédiée à l'amélioration des conditions de vie des 
-                  communautés en Côte d'Ivoire.
+                  L'ONG Ambassadeurs de l'Espoir en Côte d'Ivoire (AMES-CI) est une organisation de droit ivoirien 
+                  à but non lucratif, inscrite dans la société civile. Apolitique et laïque, AMES-CI intervient 
+                  dans les domaines de l'éducation, de la formation, de la culture, du social et de l'humanitaire.
                 </p>
                 <p>
-                  Basée à Treichville, Abidjan, notre organisation se concentre sur la formation professionnelle, 
-                  le développement social et l'assistance humanitaire pour créer un impact positif durable.
+                  <strong className="text-hope">Agréée par l'État de Côte d'Ivoire</strong> et publiée dans le 
+                  journal officiel de la République, notre organisation œuvre pour le développement et le bien-être 
+                  des communautés à travers plusieurs axes d'intervention stratégiques.
                 </p>
                 <p>
-                  Nous croyons fermement que chaque individu mérite l'opportunité de réaliser son potentiel et 
-                  de contribuer au développement de sa communauté.
+                  Basée à Treichville, Abidjan, nous nous engageons à construire des infrastructures éducatives, 
+                  à promouvoir la culture et les valeurs, à accompagner les jeunes dans leur parcours académique 
+                  et professionnel, et à apporter une assistance aux populations vulnérables et défavorisées.
                 </p>
               </div>
             </div>

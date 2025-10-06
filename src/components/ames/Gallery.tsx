@@ -2,56 +2,77 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import constructionProject from "@/assets/construction-project.jpg";
-import sportsCeremony from "@/assets/sports-ceremony.jpg";
-import teamMeeting from "@/assets/team-meeting.jpg";
-import trainingCenter from "@/assets/training-center.jpg";
-import professionalTraining from "@/assets/professional-training.jpg";
-import communityDonation from "@/assets/community-donation.jpg";
+import trainingGroup from "@/assets/ames-training-group.jpg";
+import constructionTraining from "@/assets/ames-construction-training.jpg";
+import youthSports from "@/assets/ames-youth-sports.jpg";
+import partnershipEvent from "@/assets/ames-partnership-event.jpg";
+import boardMeeting from "@/assets/ames-board-meeting.jpg";
+import communityProject from "@/assets/ames-community-project.jpg";
+import medicalDonation from "@/assets/ames-medical-donation.jpg";
+import mediaInterview from "@/assets/ames-media-interview.jpg";
+import conferenceAudience from "@/assets/ames-conference-audience.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
 
   const galleryItems = [
     {
-      image: constructionProject,
-      title: "Projet de Construction",
-      description: "Construction d'infrastructures communautaires",
-      category: "Développement"
-    },
-    {
-      image: sportsCeremony,
-      title: "Cérémonie Sportive",
-      description: "Remise de prix lors d'un événement sportif communautaire",
+      image: youthSports,
+      title: "Tournoi de Football Jeunes",
+      description: "Organisation d'activités sportives pour la jeunesse",
       category: "Événements"
     },
     {
-      image: teamMeeting,
-      title: "Réunion d'Équipe",
-      description: "Rencontre avec nos partenaires et collaborateurs",
-      category: "Partenariat"
-    },
-    {
-      image: trainingCenter,
-      title: "Centre de Formation",
-      description: "Notre centre technique de formation professionnelle",
+      image: trainingGroup,
+      title: "Formation Professionnelle",
+      description: "Groupe de jeunes en formation technique",
       category: "Formation"
     },
     {
-      image: professionalTraining,
-      title: "Formation Technique",
-      description: "Sessions de formation en équipements de protection",
+      image: constructionTraining,
+      title: "Formation en Construction",
+      description: "Apprentissage des métiers du bâtiment",
       category: "Formation"
     },
     {
-      image: communityDonation,
-      title: "Distribution Communautaire",
-      description: "Distribution d'équipements et vivres aux bénéficiaires",
+      image: medicalDonation,
+      title: "Don de Matériel Médical",
+      description: "Soutien aux infrastructures de santé",
       category: "Humanitaire"
+    },
+    {
+      image: communityProject,
+      title: "Projet Communautaire",
+      description: "Construction de puits à Bayola",
+      category: "Projets"
+    },
+    {
+      image: boardMeeting,
+      title: "Réunion Stratégique",
+      description: "Planification des activités",
+      category: "Organisation"
+    },
+    {
+      image: mediaInterview,
+      title: "Couverture Médiatique",
+      description: "Interview sur nos activités",
+      category: "Événements"
+    },
+    {
+      image: conferenceAudience,
+      title: "Conférence Publique",
+      description: "Sensibilisation communautaire",
+      category: "Événements"
+    },
+    {
+      image: partnershipEvent,
+      title: "Soirée de Partenariat",
+      description: "Rencontre avec nos partenaires",
+      category: "Organisation"
     }
   ];
 
-  const categories = ["Tous", "Formation", "Développement", "Humanitaire", "Événements", "Partenariat"];
+  const categories = ["Tous", "Formation", "Projets", "Humanitaire", "Événements", "Organisation"];
 
   return (
     <section id="gallery" className="py-20 bg-background">

@@ -128,8 +128,10 @@ const Contact = () => {
                     onClick={info.action}
                   >
                     <div className="flex items-start gap-4">
-                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center bg-${info.color}/10`}>
-                        <div className={`text-${info.color}`}>
+                      <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                        info.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+                      }`}>
+                        <div className={info.color === 'hope' ? 'text-hope' : 'text-trust'}>
                           {info.icon}
                         </div>
                       </div>
@@ -174,8 +176,7 @@ const Contact = () => {
                 Contactez-nous directement via WhatsApp pour une réponse immédiate
               </p>
               <Button 
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-hope transition-all"
+                variant="outline-white"
                 onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
               >
                 <Phone className="w-4 h-4 mr-2" />

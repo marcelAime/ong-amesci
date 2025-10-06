@@ -93,8 +93,10 @@ const About = () => {
               className="p-8 text-center hover:shadow-hope transition-all duration-300 animate-fade-in group"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 bg-${value.color}/10 group-hover:scale-110 transition-transform`}>
-                <div className={`text-${value.color}`}>
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform ${
+                value.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+              }`}>
+                <div className={value.color === 'hope' ? 'text-hope' : 'text-trust'}>
                   {value.icon}
                 </div>
               </div>

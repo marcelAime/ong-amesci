@@ -91,8 +91,7 @@ const Gallery = () => {
           {categories.map((category) => (
             <Button
               key={category}
-              variant="outline"
-              className="hover:bg-hope hover:text-white transition-all"
+              variant="outline-hope"
             >
               {category}
             </Button>
@@ -117,8 +116,7 @@ const Gallery = () => {
                   <div className="absolute bottom-4 left-4 right-4">
                     <Button
                       size="sm"
-                      variant="outline"
-                      className="border-white text-white hover:bg-white hover:text-hope transition-all"
+                      variant="outline-white"
                     >
                       <ExternalLink className="w-4 h-4 mr-2" />
                       Voir plus
@@ -149,9 +147,8 @@ const Gallery = () => {
         {/* Load More Button */}
         <div className="text-center mt-12">
           <Button 
-            variant="outline"
+            variant="outline-hope"
             size="lg"
-            className="border-hope text-hope hover:bg-hope hover:text-white transition-all"
           >
             Voir plus d'images
           </Button>

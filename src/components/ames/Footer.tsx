@@ -170,9 +170,9 @@ const Footer = () => {
                 {socialLinks.map((social) => (
                   <Button
                     key={social.name}
-                    variant="outline"
+                    variant="outline-white"
                     size="sm"
-                    className="w-10 h-10 p-0 border-white/20 text-white/80 hover:border-hope hover:text-hope hover:bg-hope/10 transition-all"
+                    className="w-10 h-10 p-0"
                     onClick={() => window.open(social.url, '_blank')}
                   >
                     {social.icon}

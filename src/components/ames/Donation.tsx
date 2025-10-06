@@ -280,8 +280,8 @@ const Donation = () => {
                 Explorez nos opportunités de partenariat pour un impact plus important
               </p>
               <Button 
-                variant="outline"
-                className="w-full border-white text-white hover:bg-white hover:text-hope transition-all"
+                variant="outline-white"
+                className="w-full"
                 onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
               >
                 Nous contacter

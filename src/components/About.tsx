@@ -89,7 +89,7 @@ const About = () => {
               </div>
             </div>
 
-            <Button variant="medical" size="lg">
+            <Button variant="hope" size="lg">
               Découvrir nos services
             </Button>
           </div>

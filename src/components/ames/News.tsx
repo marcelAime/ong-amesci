@@ -100,9 +100,8 @@ const News = () => {
           {categories.map((category) => (
             <Button
               key={category}
-              variant="outline"
+              variant="outline-hope"
               size="sm"
-              className="hover:bg-hope hover:text-white transition-all"
             >
               {category}
             </Button>
@@ -215,8 +214,7 @@ const News = () => {
               className="flex-1 px-4 py-2 rounded-lg border border-white/20 bg-white/10 text-white placeholder-white/70 focus:outline-none focus:border-white/40"
             />
             <Button 
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-hope transition-all"
+              variant="outline-white"
             >
               S'inscrire
             </Button>

@@ -32,8 +32,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: "600ms" }}>
               <Button 
                 size="lg" 
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-hope transition-all shadow-trust"
+                variant="outline-white"
                 onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 <Heart className="w-5 h-5 mr-2" />
@@ -42,8 +41,7 @@ const Hero = () => {
               
               <Button 
                 size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-trust transition-all"
+                variant="outline-white"
                 onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
               >
                 <Phone className="w-5 h-5 mr-2" />

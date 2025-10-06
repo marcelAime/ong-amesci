@@ -96,8 +96,10 @@ const Activities = () => {
               className="p-6 text-center hover:shadow-hope transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 bg-${stat.color}/10`}>
-                <div className={`text-${stat.color}`}>
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 ${
+                stat.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+              }`}>
+                <div className={stat.color === 'hope' ? 'text-hope' : 'text-trust'}>
                   {stat.icon}
                 </div>
               </div>
@@ -119,8 +121,10 @@ const Activities = () => {
               {/* Content */}
               <div className={`animate-slide-in-left ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
                 <Card className="p-8 h-full hover:shadow-vibrant transition-all duration-300">
-                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 bg-${activity.color}/10`}>
-                    <div className={`text-${activity.color}`}>
+                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
+                    activity.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+                  }`}>
+                    <div className={activity.color === 'hope' ? 'text-hope' : 'text-trust'}>
                       {activity.icon}
                     </div>
                   </div>
@@ -136,15 +140,16 @@ const Activities = () => {
                   <div className="space-y-3 mb-8">
                     {activity.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3">
-                        <div className={`w-2 h-2 rounded-full bg-${activity.color}`}></div>
+                        <div className={`w-2 h-2 rounded-full ${
+                          activity.color === 'hope' ? 'bg-hope' : 'bg-trust'
+                        }`}></div>
                         <span className="text-foreground">{feature}</span>
                       </div>
                     ))}
                   </div>
                   
                   <Button 
-                    variant="outline"
-                    className={`border-${activity.color} text-${activity.color} hover:bg-${activity.color} hover:text-white transition-all`}
+                    variant={activity.color === "hope" ? "outline-hope" : "outline-trust"}
                     onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
                   >
                     En savoir plus
@@ -161,7 +166,7 @@ const Activities = () => {
                       alt={activity.title}
                       className="w-full h-80 object-cover rounded-2xl shadow-hope"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-t from-${activity.color}/20 to-transparent rounded-2xl`}></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
                   </div>
                 </div>
               )}
@@ -180,15 +185,13 @@ const Activities = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-hope transition-all"
+                variant="outline-white"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Nous rejoindre
               </Button>
               <Button 
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-trust transition-all"
+                variant="outline-white"
                 onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Faire un don

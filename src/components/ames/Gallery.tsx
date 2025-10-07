@@ -11,11 +11,18 @@ import communityProject from "@/assets/ames-community-project.jpg";
 import medicalDonation from "@/assets/ames-medical-donation.jpg";
 import mediaInterview from "@/assets/ames-media-interview.jpg";
 import conferenceAudience from "@/assets/ames-conference-audience.jpg";
+import formationProfessionnelle from "@/assets/formation-professionnelle.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
 
   const galleryItems = [
+    {
+      image: formationProfessionnelle,
+      title: "Formation en Menuiserie Aluminium et Soudure",
+      description: "Formation professionnelle - Inscriptions du 18 sept au 18 Oct 2025",
+      category: "Formation"
+    },
     {
       image: youthSports,
       title: "Tournoi de Football Jeunes",

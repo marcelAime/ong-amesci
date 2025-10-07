@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Heart, CreditCard, Smartphone, Building, Users, Banknote, Gift, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const Donation = () => {
   const { t } = useLanguage();
@@ -16,9 +17,40 @@ const Donation = () => {
   const [paymentMethod, setPaymentMethod] = useState('mobile');
   const [email, setEmail] = useState('');
   const [isPaystackLoaded, setIsPaystackLoaded] = useState(false);
+  const [paystackKey, setPaystackKey] = useState<string>('');
+
+  // Charger la clé Paystack depuis les secrets
+  useEffect(() => {
+    const loadPaystackKey = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('paystack-config');
+        
+        if (error) {
+          console.error('Erreur lors du chargement de la clé Paystack:', error);
+          toast({
+            title: "Erreur de configuration",
+            description: "Impossible de charger la configuration de paiement",
+            variant: "destructive"
+          });
+          return;
+        }
+        
+        if (data?.publicKey) {
+          setPaystackKey(data.publicKey);
+          console.log('Clé Paystack chargée avec succès');
+        }
+      } catch (error) {
+        console.error('Erreur:', error);
+      }
+    };
+    
+    loadPaystackKey();
+  }, [toast]);
 
   // Vérifier que le script Paystack est chargé
   useEffect(() => {
+    if (!paystackKey) return;
+    
     const checkPaystack = () => {
       if ((window as any).PaystackPop) {
         setIsPaystackLoaded(true);
@@ -29,7 +61,7 @@ const Donation = () => {
       }
     };
     checkPaystack();
-  }, []);
+  }, [paystackKey]);
 
   const predefinedAmounts = [5000, 10000, 25000, 50000, 100000, 250000];
 
@@ -105,10 +137,20 @@ const Donation = () => {
       return;
     }
 
+    // Vérifier que la clé est disponible
+    if (!paystackKey) {
+      toast({
+        title: "Configuration manquante",
+        description: "La clé de paiement n'est pas configurée",
+        variant: "destructive"
+      });
+      return;
+    }
+
     try {
       // Initialize Paystack payment
       const handler = (window as any).PaystackPop.setup({
-        key: 'pk_test_ec344c48c34a15f8c96e299c71b3078ee85d0e9f',
+        key: paystackKey,
         email: email,
         amount: amount * 100, // Convert to kobo/pesewas
         currency: 'XOF',

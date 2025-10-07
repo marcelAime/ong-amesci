@@ -12,7 +12,7 @@ serve(async (req) => {
   }
 
   try {
-    const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY');
+    const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY') || 'pk_test_ec344c48c34a15f8c96e299c71b3078ee85d0e9f';
     
     console.log('Paystack key check:', PAYSTACK_PUBLIC_KEY ? 'Key found' : 'Key not found');
     
@@ -35,8 +35,9 @@ serve(async (req) => {
 
   } catch (error) {
     console.error('Error in paystack-config function:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return new Response(JSON.stringify({ 
-      error: 'Configuration error: ' + error.message 
+      error: 'Configuration error: ' + errorMessage 
     }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },

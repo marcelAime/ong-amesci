@@ -12,16 +12,65 @@ import medicalDonation from "@/assets/ames-medical-donation.jpg";
 import mediaInterview from "@/assets/ames-media-interview.jpg";
 import conferenceAudience from "@/assets/ames-conference-audience.jpg";
 import formationProfessionnelle from "@/assets/formation-professionnelle.jpg";
+import hopitalPorbouet from "@/assets/hopital-porbouet.jpg";
+import coursCommences from "@/assets/cours-commences.jpg";
+import rencontreCdides from "@/assets/rencontre-cdides.jpg";
+import audienceMarino from "@/assets/audience-marino.jpg";
+import colloqueArabophones1 from "@/assets/colloque-arabophones-1.jpg";
+import colloqueArabophones2 from "@/assets/colloque-arabophones-2.jpg";
+import colloqueArabophones3 from "@/assets/colloque-arabophones-3.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
 
   const galleryItems = [
     {
+      image: colloqueArabophones1,
+      title: "Colloque sur l'insertion professionnelle",
+      description: "Colloque d'envergure sur l'insertion des diplômés arabophones",
+      category: "Événements"
+    },
+    {
+      image: audienceMarino,
+      title: "Audience avec M. Bamba Anzoumana",
+      description: "Rencontre avec le parrain de la jeunesse ivoirienne",
+      category: "Partenariat"
+    },
+    {
+      image: rencontreCdides,
+      title: "Rencontre AMESCI-CDIDES",
+      description: "Collaboration avec la Chambre de Diplomatie Islamique",
+      category: "Partenariat"
+    },
+    {
+      image: coursCommences,
+      title: "Début des Cours",
+      description: "Nouveau semestre de formation professionnelle",
+      category: "Formation"
+    },
+    {
+      image: hopitalPorbouet,
+      title: "Visite Hôpital de Porbouet",
+      description: "Action humanitaire auprès des patients",
+      category: "Humanitaire"
+    },
+    {
       image: formationProfessionnelle,
       title: "Formation en Menuiserie Aluminium et Soudure",
       description: "Formation professionnelle - Inscriptions du 18 sept au 18 Oct 2025",
       category: "Formation"
+    },
+    {
+      image: colloqueArabophones2,
+      title: "Participants au Colloque",
+      description: "Échanges sur l'insertion professionnelle",
+      category: "Événements"
+    },
+    {
+      image: colloqueArabophones3,
+      title: "Séance du Colloque",
+      description: "Experts et parties prenantes réunis",
+      category: "Événements"
     },
     {
       image: youthSports,

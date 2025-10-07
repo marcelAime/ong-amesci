@@ -3,6 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import hopitalPorbouet from "@/assets/hopital-porbouet.jpg";
+import coursCommences from "@/assets/cours-commences.jpg";
+import rencontreCdides from "@/assets/rencontre-cdides.jpg";
+import audienceMarino from "@/assets/audience-marino.jpg";
+import colloqueArabophones1 from "@/assets/colloque-arabophones-1.jpg";
+import colloqueArabophones2 from "@/assets/colloque-arabophones-2.jpg";
+import colloqueArabophones3 from "@/assets/colloque-arabophones-3.jpg";
 
 const News = () => {
   const { t } = useLanguage();
@@ -10,75 +17,87 @@ const News = () => {
   const newsItems = [
     {
       id: 1,
-      title: "Lancement du nouveau programme de formation en climatisation",
-      excerpt: "Nous sommes fiers d'annoncer le lancement de notre nouveau programme de formation spécialisé en froid et climatisation, avec des équipements modernes.",
-      date: "15 Mars 2024",
-      author: "Équipe AMES-CI",
-      category: "Formation",
-      readTime: "3 min de lecture",
-      image: "/api/placeholder/400/250"
+      title: "Colloque sur l'insertion professionnelle des diplômés arabophones",
+      excerpt: "L'ONG AMESCI a organisé un colloque d'envergure sur l'insertion professionnelle des diplômés arabophones en Côte d'Ivoire, réunissant experts et parties prenantes.",
+      date: "20 Avril 2023",
+      author: "Dr Touré Fétègue Mandjou",
+      category: "Événements",
+      readTime: "8 min de lecture",
+      image: colloqueArabophones1,
+      fullContent: "Les images du colloque sur l'insertion professionnelle des diplômés arabophones en Côte d'Ivoire témoignent de la participation active des différents acteurs du secteur éducatif et professionnel.",
+      images: [colloqueArabophones1, colloqueArabophones2, colloqueArabophones3]
     },
     {
       id: 2,
-      title: "Distribution de matériel scolaire dans 5 écoles d'Abidjan",
-      excerpt: "Dans le cadre de notre programme d'aide à l'éducation, nous avons distribué cahiers, stylos et uniformes à 200 élèves défavorisés.",
-      date: "8 Mars 2024",
-      author: "Équipe Humanitaire",
-      category: "Humanitaire",
-      readTime: "2 min de lecture",
-      image: "/api/placeholder/400/250"
+      title: "Audience accordée par M. Bamba Anzoumana dit Marino",
+      excerpt: "L'ONG Ambassadeurs de l'Espoir a eu l'honneur d'être reçue par M. Bamba Anzoumana dit Marino, figure emblématique et parrain de la jeunesse ivoirienne.",
+      date: "15 Mars 2024",
+      author: "Équipe AMESCI",
+      category: "Partenariat",
+      readTime: "5 min de lecture",
+      image: audienceMarino,
+      fullContent: `M. Bamba Anzoumana dit Marino se distingue par :
+- Sa générosité légendaire envers les plus démunis
+- Son engagement constant auprès de la jeunesse
+- Sa parole d'honneur qui fait de lui un homme de confiance
+- Son dévouement remarquable pour le développement social
+- Sa vision philanthropique qui inspire et mobilise
+
+Véritable mécène social, il incarne les valeurs de solidarité et d'espoir qui guident notre mission humanitaire.
+
+Dans les prochains jours, nous aurons le plaisir de vous annoncer une série complète d'actions sociales et humanitaires qui toucheront plusieurs villes, de Touba à Abidjan.
+
+Au nom de l'ONG Ambassadeurs de l'Espoir en Côte d'Ivoire, son président, le Docteur Touré Fetegue Mandjou, tient à exprimer ses sincères remerciements à M. Bamba Anzoumana dit Marino pour son soutien précieux.`
     },
     {
       id: 3,
-      title: "Partenariat avec l'ANPE pour l'insertion professionnelle",
-      excerpt: "Signature d'un accord de partenariat avec l'Agence Nationale Pour l'Emploi pour faciliter l'insertion professionnelle de nos apprenants.",
-      date: "1 Mars 2024",
+      title: "Rencontre entre l'ONG AMESCI et la délégation CDIDES",
+      excerpt: "L'ONG Ambassadeurs de l'Espoir en Côte d'Ivoire (AMESCI) a accueilli la délégation de la Chambre de Diplomatie Islamique pour le Développement Économique et Social.",
+      date: "10 Mars 2024",
       author: "Direction",
       category: "Partenariat",
-      readTime: "4 min de lecture",
-      image: "/api/placeholder/400/250"
+      readTime: "6 min de lecture",
+      image: rencontreCdides,
+      fullContent: `La réception s'est déroulée au centre de formation professionnelle d'AMESCI, situé à Abobo BC, à proximité de l'école de la gendarmerie.
+
+Le Dr Touré Fétègue Mandjou, président d'AMESCI, a accordé une attention particulière aux propos tenus par Son Excellence Dr Mamady Moussa et sa délégation.
+
+Suite aux échanges, le président d'AMESCI a exprimé sa volonté absolue d'établir une collaboration fructueuse qui servira les intérêts de la nation ivoirienne.
+
+La rencontre s'est achevée par les remerciements du président d'AMESCI adressés à la CDIDES pour cette marque de considération et cette initiative de rapprochement.
+
+Cette rencontre marque une étape importante dans le renforcement des partenariats entre organisations œuvrant pour le développement socio-économique en Côte d'Ivoire.`
     },
     {
       id: 4,
-      title: "Inauguration du nouveau centre de couture à Treichville",
-      excerpt: "Ouverture officielle de notre centre de formation en couture et broderie, équipé de 20 machines industrielles modernes.",
-      date: "22 Février 2024",
-      author: "Équipe AMES-CI",
-      category: "Infrastructure",
+      title: "Les cours ont bien commencé",
+      excerpt: "Le nouveau semestre de formation professionnelle a débuté avec succès dans notre centre. Les apprenants sont motivés et engagés dans leurs parcours.",
+      date: "5 Mars 2024",
+      author: "Équipe Formation",
+      category: "Formation",
       readTime: "3 min de lecture",
-      image: "/api/placeholder/400/250"
+      image: coursCommences
     },
     {
       id: 5,
-      title: "Campagne de sensibilisation sur l'hygiène en milieu scolaire",
-      excerpt: "Organisation d'une campagne de sensibilisation dans 10 écoles primaires sur l'importance de l'hygiène et la prévention des maladies.",
-      date: "18 Février 2024",
-      author: "Équipe Santé",
-      category: "Santé",
-      readTime: "2 min de lecture",
-      image: "/api/placeholder/400/250"
-    },
-    {
-      id: 6,
-      title: "Formation de 50 jeunes en menuiserie aluminium",
-      excerpt: "Clôture de la 3ème session de formation en menuiserie aluminium avec un taux de réussite de 95% et 80% d'insertion professionnelle.",
-      date: "10 Février 2024",
-      author: "Formateurs",
-      category: "Formation",
-      readTime: "3 min de lecture",
-      image: "/api/placeholder/400/250"
+      title: "Visite à l'hôpital général de Porbouet",
+      excerpt: "L'équipe d'AMESCI a rendu visite aux patients de l'hôpital général de Porbouet dans le cadre de nos actions humanitaires de soutien aux personnes vulnérables.",
+      date: "28 Février 2024",
+      author: "Équipe Humanitaire",
+      category: "Humanitaire",
+      readTime: "4 min de lecture",
+      image: hopitalPorbouet
     }
   ];
 
-  const categories = ["Tous", "Formation", "Humanitaire", "Partenariat", "Infrastructure", "Santé"];
+  const categories = ["Tous", "Formation", "Humanitaire", "Partenariat", "Événements"];
 
   const getCategoryColor = (category: string) => {
     const colors: Record<string, string> = {
       "Formation": "bg-hope/10 text-hope",
       "Humanitaire": "bg-trust/10 text-trust",
       "Partenariat": "bg-purple-100 text-purple-700",
-      "Infrastructure": "bg-orange-100 text-orange-700",
-      "Santé": "bg-green-100 text-green-700"
+      "Événements": "bg-orange-100 text-orange-700"
     };
     return colors[category] || "bg-gray-100 text-gray-700";
   };
@@ -111,11 +130,17 @@ const News = () => {
         {/* Featured Article */}
         <Card className="mb-12 overflow-hidden hover:shadow-hope transition-all duration-300">
           <div className="grid lg:grid-cols-2 gap-0">
-            <div className="h-64 lg:h-auto bg-gradient-hero"></div>
+            <div className="h-64 lg:h-auto relative overflow-hidden">
+              <img 
+                src={newsItems[0].image} 
+                alt={newsItems[0].title}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <div className="p-8">
               <div className="flex items-center gap-4 mb-4">
-                <Badge className={getCategoryColor("Formation")}>
-                  Formation
+                <Badge className={getCategoryColor(newsItems[0].category)}>
+                  {newsItems[0].category}
                 </Badge>
                 <span className="text-sm text-muted-foreground">Article à la une</span>
               </div>
@@ -157,7 +182,12 @@ const News = () => {
               className="overflow-hidden hover:shadow-trust transition-all duration-300 animate-fade-in group cursor-pointer"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="h-48 bg-gradient-hero relative overflow-hidden">
+              <div className="h-48 relative overflow-hidden">
+                <img 
+                  src={article.image} 
+                  alt={article.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
                 <div className="absolute top-4 left-4">
                   <Badge className={getCategoryColor(article.category)}>

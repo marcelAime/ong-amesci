@@ -56,3 +56,6 @@ verify_jwt = false
 
 [functions.paystack-config]
 verify_jwt = false
+
+[functions.paystack-transactions]
+verify_jwt = true

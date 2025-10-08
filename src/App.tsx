@@ -13,22 +13,17 @@ import Footer from "@/components/ames/Footer";
 
 function App() {
   return (
-    <HelmetProvider>
-      <LanguageProvider>
-        <div className="min-h-screen">
-          <Navbar />
-          <Hero />
-          <About />
-          <Activities />
-          <Gallery />
-          <News />
-          <Donation />
-          <Contact />
-          <Footer />
-          <Toaster />
-        </div>
-      </LanguageProvider>
-    </HelmetProvider>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <About />
+      <Activities />
+      <Gallery />
+      <News />
+      <Donation />
+      <Contact />
+      <Footer />
+    </div>
   );
 }
 

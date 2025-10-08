@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import trainingGroup from "@/assets/ames-training-group.jpg";
 import constructionTraining from "@/assets/ames-construction-training.jpg";
 import youthSports from "@/assets/ames-youth-sports.jpg";
@@ -22,6 +23,7 @@ import colloqueArabophones3 from "@/assets/colloque-arabophones-3.jpg";
 
 const Gallery = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const galleryItems = [
     {
@@ -128,7 +130,7 @@ const Gallery = () => {
     }
   ];
 
-  const categories = ["Tous", "Formation", "Projets", "Humanitaire", "Événements", "Organisation"];
+  const categories = ["Tous", "Formation", "Projets", "Humanitaire", "Événements", "Organisation", "Partenariat"];
 
   return (
     <section id="gallery" className="py-20 bg-background">
@@ -205,6 +207,7 @@ const Gallery = () => {
           <Button 
             variant="outline-hope"
             size="lg"
+            onClick={() => navigate('/gallery')}
           >
             Voir plus d'images
           </Button>

@@ -10,6 +10,7 @@ import News from "@/components/ames/News";
 import Contact from "@/components/ames/Contact";
 import Donation from "@/components/ames/Donation";
 import Footer from "@/components/ames/Footer";
+import FloatingDonation from "@/components/ames/FloatingDonation";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Donation />
       <Contact />
       <Footer />
+      <FloatingDonation />
     </div>
   );
 }

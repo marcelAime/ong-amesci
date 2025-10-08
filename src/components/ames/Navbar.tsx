@@ -1,12 +1,14 @@
 import { useState } from "react";
+import { Menu, X, Globe, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import amesLogo from "@/assets/ames-logo.jpg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+  const navigate = useNavigate();
 
   const navigationItems = [
     { key: 'nav.home', href: '#home' },
@@ -54,7 +56,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Language Selector & Donate Button */}
+          {/* Language Selector, Login & Donate Button */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="relative group">
               <Button variant="ghost" size="sm" className="gap-2">
@@ -76,6 +78,16 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
+            
+            <Button 
+              onClick={() => navigate('/auth')}
+              variant="outline"
+              size="sm"
+              className="border-hope text-hope hover:bg-hope/10"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Connexion
+            </Button>
             
             <Button 
               variant="default" 
@@ -113,7 +125,7 @@ const Navbar = () => {
                 </a>
               ))}
               
-              <div className="pt-4 border-t border-border">
+              <div className="pt-4 border-t border-border space-y-3">
                 <div className="flex flex-wrap gap-2 mb-4">
                   {languages.map((lang) => (
                     <button
@@ -127,6 +139,18 @@ const Navbar = () => {
                     </button>
                   ))}
                 </div>
+                
+                <Button 
+                  className="w-full border-hope text-hope hover:bg-hope/10"
+                  variant="outline"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate('/auth');
+                  }}
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Connexion
+                </Button>
                 
                 <Button 
                   className="w-full bg-gradient-hero text-white"

@@ -10,6 +10,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import App from "./App.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Auth from "./pages/Auth.tsx";
+import GalleryPage from "./pages/GalleryPage.tsx";
+import NewsPage from "./pages/NewsPage.tsx";
 import "./index.css";
 
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/" element={<App />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/gallery" element={<GalleryPage />} />
+                <Route path="/news" element={<NewsPage />} />
               </Routes>
               <Toaster />
               <Sonner />

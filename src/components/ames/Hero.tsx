@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import constructionProject from "@/assets/construction-project.jpg";
+import amesLogo from "@/assets/ames-logo.jpg";
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -50,30 +50,16 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image */}
+          {/* Logo */}
           <div className="animate-slide-in-right">
-            <div className="relative">
-              <img
-                src={constructionProject}
-                alt="Projet de construction AMES-CI"
-                className="w-full h-96 lg:h-[500px] object-cover rounded-2xl shadow-vibrant"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-hope/20 to-transparent rounded-2xl"></div>
-              
-              {/* Floating Stats */}
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-4">
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <div className="text-2xl font-bold text-hope">10+</div>
-                      <div className="text-sm text-foreground/70">Années d'expérience</div>
-                    </div>
-                    <div>
-                      <div className="text-2xl font-bold text-trust">500+</div>
-                      <div className="text-sm text-foreground/70">Bénéficiaires</div>
-                    </div>
-                  </div>
-                </div>
+            <div className="relative flex items-center justify-center">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-vibrant opacity-20 rounded-full blur-3xl animate-pulse"></div>
+                <img
+                  src={amesLogo}
+                  alt="Logo AMES-CI"
+                  className="relative w-full max-w-md h-auto object-contain rounded-full shadow-vibrant"
+                />
               </div>
             </div>
           </div>

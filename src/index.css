@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    /* Light theme - Professional and warm */
+    /* Light theme - Logo-inspired colors */
     --background: 0 0% 100%;
     --foreground: 222 84% 4.9%;
 
@@ -16,52 +16,59 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 4.9%;
 
-    /* Green - Hope and Growth */
-    --primary: 142 76% 36%;
+    /* Green - Hope from logo */
+    --primary: 150 70% 35%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 142 76% 50%;
-    --primary-dark: 142 76% 25%;
+    --primary-light: 150 70% 50%;
+    --primary-dark: 150 70% 25%;
 
-    /* Light Blue - Trust and Confidence */
-    --secondary: 195 100% 50%;
+    /* Orange - Energy from logo */
+    --secondary: 28 85% 50%;
     --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Accent - Complementary colors */
-    --accent: 195 100% 50%;
+    /* Turquoise - Trust from logo */
+    --accent: 180 65% 48%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 195 100% 65%;
+    --accent-light: 180 65% 65%;
 
-    /* Hope (Green variations) */
-    --hope: 142 76% 36%;
+    /* Hope (Green from logo) */
+    --hope: 150 70% 35%;
     --hope-foreground: 0 0% 100%;
-    --hope-light: 142 76% 50%;
+    --hope-light: 150 70% 50%;
 
-    /* Trust (Blue variations) */
-    --trust: 195 100% 50%;
+    /* Trust (Turquoise from logo) */
+    --trust: 180 65% 48%;
     --trust-foreground: 0 0% 100%;
-    --trust-light: 195 100% 65%;
+    --trust-light: 180 65% 65%;
+
+    /* Energy (Orange from logo) */
+    --energy: 28 85% 50%;
+    --energy-foreground: 0 0% 100%;
+    --energy-light: 28 85% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 142 76% 36%;
+    --ring: 150 70% 35%;
 
-    /* Dynamic gradients - Hope and Trust combinations */
+    /* Logo-inspired gradients */
     --gradient-hero: linear-gradient(135deg, hsl(var(--hope)), hsl(var(--trust)));
-    --gradient-hope: linear-gradient(135deg, hsl(var(--hope)), hsl(120 60% 70%));
-    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(210 65% 85%));
+    --gradient-hope: linear-gradient(135deg, hsl(var(--hope)), hsl(var(--energy)));
+    --gradient-trust: linear-gradient(135deg, hsl(var(--trust)), hsl(180 70% 85%));
+    --gradient-energy: linear-gradient(135deg, hsl(var(--energy)), hsl(40 90% 65%));
     --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(210 40% 98%));
-    --gradient-vibrant: linear-gradient(45deg, hsl(var(--hope)), hsl(var(--trust)), hsl(120 60% 70%));
+    --gradient-vibrant: linear-gradient(45deg, hsl(var(--hope)), hsl(var(--trust)), hsl(var(--energy)));
     
-    /* Elegant shadows with brand colors */
+    /* Elegant shadows with logo colors */
     --shadow-soft: 0 4px 20px -4px hsl(var(--hope) / 0.15);
     --shadow-hope: 0 8px 35px -8px hsl(var(--hope) / 0.25);
     --shadow-trust: 0 8px 35px -8px hsl(var(--trust) / 0.25);
+    --shadow-energy: 0 8px 35px -8px hsl(var(--energy) / 0.25);
     --shadow-vibrant: 0 10px 40px -10px hsl(var(--hope) / 0.3);
     
     --radius: 0.75rem;

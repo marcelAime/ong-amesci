@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, User, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import hopitalPorbouet from "@/assets/hopital-porbouet.jpg";
 import coursCommences from "@/assets/cours-commences.jpg";
 import rencontreCdides from "@/assets/rencontre-cdides.jpg";
@@ -13,6 +14,7 @@ import colloqueArabophones3 from "@/assets/colloque-arabophones-3.jpg";
 
 const News = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const newsItems = [
     {
@@ -227,6 +229,17 @@ Cette rencontre marque une étape importante dans le renforcement des partenaria
               </div>
             </Card>
           ))}
+        </div>
+
+        {/* Load More Button */}
+        <div className="text-center mt-12">
+          <Button 
+            variant="outline-hope"
+            size="lg"
+            onClick={() => navigate('/news')}
+          >
+            Voir toutes les actualités
+          </Button>
         </div>
 
         {/* Newsletter Signup */}

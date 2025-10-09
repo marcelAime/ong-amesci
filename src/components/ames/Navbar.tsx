@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Menu, X, Globe, LogIn } from "lucide-react";
+import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useNavigate } from "react-router-dom";
 import amesLogo from "@/assets/ames-logo.jpg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
-  const navigate = useNavigate();
 
   const navigationItems = [
     { key: 'nav.home', href: '#home' },
@@ -43,25 +41,29 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-2">
             {navigationItems.map((item) => (
-              <a
+              <Button
                 key={item.key}
-                href={item.href}
-                className="text-foreground hover:text-hope transition-colors relative group"
+                variant="ghost"
+                className="text-foreground hover:text-accent hover:bg-accent/10"
+                onClick={() => {
+                  const element = document.querySelector(item.href);
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 {t(item.key)}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-hope group-hover:w-full transition-all duration-300"></span>
-              </a>
+              </Button>
             ))}
           </div>
 
-          {/* Language Selector, Login & Donate Button */}
-          <div className="hidden md:flex items-center space-x-4">
+          {/* Language Selector & Donate Button */}
+          <div className="hidden md:flex items-center space-x-3">
             <div className="relative group">
               <Button variant="ghost" size="sm" className="gap-2">
                 <Globe className="w-4 h-4" />
                 {language.toUpperCase()}
+                <ChevronDown className="w-3 h-3" />
               </Button>
               <div className="absolute right-0 top-full mt-2 w-40 bg-card border border-border rounded-md shadow-soft opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 {languages.map((lang) => (
@@ -69,7 +71,7 @@ const Navbar = () => {
                     key={lang.code}
                     onClick={() => setLanguage(lang.code as any)}
                     className={`w-full text-left px-4 py-2 hover:bg-muted transition-colors first:rounded-t-md last:rounded-b-md ${
-                      language === lang.code ? 'bg-muted text-hope' : ''
+                      language === lang.code ? 'bg-muted text-accent' : ''
                     }`}
                     dir={lang.code === 'ar' ? 'rtl' : 'ltr'}
                   >
@@ -80,18 +82,8 @@ const Navbar = () => {
             </div>
             
             <Button 
-              onClick={() => navigate('/auth')}
-              variant="outline"
-              size="sm"
-              className="border-hope text-hope hover:bg-hope/10"
-            >
-              <LogIn className="w-4 h-4 mr-2" />
-              Connexion
-            </Button>
-            
-            <Button 
               variant="default" 
-              className="bg-gradient-hero text-white hover:shadow-hope transition-all"
+              className="bg-accent hover:bg-accent/90 text-white"
               onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
             >
               {t('nav.donate')}
@@ -113,16 +105,20 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border bg-background">
-            <div className="py-4 space-y-4">
+            <div className="py-4 space-y-2">
               {navigationItems.map((item) => (
-                <a
+                <Button
                   key={item.key}
-                  href={item.href}
-                  className="block text-foreground hover:text-hope transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
+                  variant="ghost"
+                  className="w-full justify-start text-foreground hover:text-accent hover:bg-accent/10"
+                  onClick={() => {
+                    const element = document.querySelector(item.href);
+                    element?.scrollIntoView({ behavior: 'smooth' });
+                    setIsMenuOpen(false);
+                  }}
                 >
                   {t(item.key)}
-                </a>
+                </Button>
               ))}
               
               <div className="pt-4 border-t border-border space-y-3">
@@ -132,7 +128,7 @@ const Navbar = () => {
                       key={lang.code}
                       onClick={() => setLanguage(lang.code as any)}
                       className={`px-3 py-1 rounded-md text-sm transition-colors ${
-                        language === lang.code ? 'bg-hope text-white' : 'bg-muted text-foreground hover:bg-hope/10'
+                        language === lang.code ? 'bg-accent text-white' : 'bg-muted text-foreground hover:bg-accent/10'
                       }`}
                     >
                       {lang.name}
@@ -141,19 +137,7 @@ const Navbar = () => {
                 </div>
                 
                 <Button 
-                  className="w-full border-hope text-hope hover:bg-hope/10"
-                  variant="outline"
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    navigate('/auth');
-                  }}
-                >
-                  <LogIn className="w-4 h-4 mr-2" />
-                  Connexion
-                </Button>
-                
-                <Button 
-                  className="w-full bg-gradient-hero text-white"
+                  className="w-full bg-accent hover:bg-accent/90 text-white"
                   onClick={() => {
                     setIsMenuOpen(false);
                     document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' });

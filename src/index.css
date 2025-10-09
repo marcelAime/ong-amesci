@@ -29,10 +29,10 @@
     --muted: 210 40% 96%;
     --muted-foreground: 215 16% 47%;
 
-    /* Turquoise - Trust from logo */
-    --accent: 180 65% 48%;
+    /* Orange - Accent from logo */
+    --accent: 24 100% 50%;
     --accent-foreground: 0 0% 100%;
-    --accent-light: 180 65% 65%;
+    --accent-light: 24 100% 65%;
 
     /* Hope (Green from logo) */
     --hope: 150 70% 35%;

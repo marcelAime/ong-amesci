@@ -1,256 +1,162 @@
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
-import trainingGroup from "@/assets/ames-training-group.jpg";
-import constructionTraining from "@/assets/ames-construction-training.jpg";
-import youthSports from "@/assets/ames-youth-sports.jpg";
-import partnershipEvent from "@/assets/ames-partnership-event.jpg";
-import boardMeeting from "@/assets/ames-board-meeting.jpg";
-import communityProject from "@/assets/ames-community-project.jpg";
-import medicalDonation from "@/assets/ames-medical-donation.jpg";
-import mediaInterview from "@/assets/ames-media-interview.jpg";
-import conferenceAudience from "@/assets/ames-conference-audience.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useEffect } from "react";
 import formationProfessionnelle from "@/assets/formation-professionnelle.jpg";
-import hopitalPorbouet from "@/assets/hopital-porbouet.jpg";
-import coursCommences from "@/assets/cours-commences.jpg";
-import rencontreCdides from "@/assets/rencontre-cdides.jpg";
-import audienceMarino from "@/assets/audience-marino.jpg";
-import colloqueArabophones1 from "@/assets/colloque-arabophones-1.jpg";
-import colloqueArabophones2 from "@/assets/colloque-arabophones-2.jpg";
-import colloqueArabophones3 from "@/assets/colloque-arabophones-3.jpg";
+import professionalTraining from "@/assets/professional-training.jpg";
+import trainingCenter from "@/assets/training-center.jpg";
+import communityDonation from "@/assets/community-donation.jpg";
+import constructionProject from "@/assets/construction-project.jpg";
+import youthSports from "@/assets/ames-youth-sports.jpg";
+import medicalDonation from "@/assets/ames-medical-donation.jpg";
+import boardMeeting from "@/assets/ames-board-meeting.jpg";
+import presidentSpeaking1 from "@/assets/president-speaking-1.jpg";
+import presidentSpeaking2 from "@/assets/president-speaking-2.jpg";
+import colloqueAudience from "@/assets/colloque-audience.jpg";
+import colloquePanel from "@/assets/colloque-panel.jpg";
+import presidentMeeting1 from "@/assets/president-meeting-1.jpg";
+import presidentOfficial from "@/assets/president-official.jpg";
+import teamPartenaires from "@/assets/team-partenaires.jpg";
 
 const Gallery = () => {
-  const { t } = useLanguage();
   const navigate = useNavigate();
+  const { t } = useLanguage();
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const galleryItems = [
+  const galleryCategories = [
     {
-      image: colloqueArabophones1,
-      title: "Colloque sur l'insertion professionnelle",
-      description: "Colloque d'envergure sur l'insertion des diplômés arabophones",
-      category: "Événements"
-    },
-    {
-      image: audienceMarino,
-      title: "Audience avec M. Bamba Anzoumana",
-      description: "Rencontre avec le parrain de la jeunesse ivoirienne",
-      category: "Partenariat"
-    },
-    {
-      image: rencontreCdides,
-      title: "Rencontre AMESCI-CDIDES",
-      description: "Collaboration avec la Chambre de Diplomatie Islamique",
-      category: "Partenariat"
-    },
-    {
-      image: coursCommences,
-      title: "Début des Cours",
-      description: "Nouveau semestre de formation professionnelle",
-      category: "Formation"
-    },
-    {
-      image: hopitalPorbouet,
-      title: "Visite Hôpital de Porbouet",
-      description: "Action humanitaire auprès des patients",
-      category: "Humanitaire"
-    },
-    {
-      image: formationProfessionnelle,
-      title: "Formation en Menuiserie Aluminium et Soudure",
-      description: "Formation professionnelle - Inscriptions du 18 sept au 18 Oct 2025",
-      category: "Formation"
-    },
-    {
-      image: colloqueArabophones2,
-      title: "Participants au Colloque",
-      description: "Échanges sur l'insertion professionnelle",
-      category: "Événements"
-    },
-    {
-      image: colloqueArabophones3,
-      title: "Séance du Colloque",
-      description: "Experts et parties prenantes réunis",
-      category: "Événements"
-    },
-    {
-      image: youthSports,
-      title: "Tournoi de Football Jeunes",
-      description: "Organisation d'activités sportives pour la jeunesse",
-      category: "Événements"
-    },
-    {
-      image: trainingGroup,
       title: "Formation Professionnelle",
-      description: "Groupe de jeunes en formation technique",
-      category: "Formation"
+      items: [
+        { image: formationProfessionnelle, title: "Formation en Soudure", description: "Cours pratiques de soudure" },
+        { image: professionalTraining, title: "Menuiserie Aluminium", description: "Formation complète" },
+        { image: trainingCenter, title: "Centre Moderne", description: "Infrastructure de formation" },
+      ]
     },
     {
-      image: constructionTraining,
-      title: "Formation en Construction",
-      description: "Apprentissage des métiers du bâtiment",
-      category: "Formation"
+      title: "Action Humanitaire",
+      items: [
+        { image: communityDonation, title: "Distribution de Vivres", description: "Aide aux communautés" },
+        { image: medicalDonation, title: "Don de Matériel Médical", description: "Soutien à la santé" },
+        { image: constructionProject, title: "Infrastructures", description: "Projets de construction" },
+      ]
     },
     {
-      image: medicalDonation,
-      title: "Don de Matériel Médical",
-      description: "Soutien aux infrastructures de santé",
-      category: "Humanitaire"
+      title: "Colloque Arabophone",
+      items: [
+        { image: presidentSpeaking1, title: "Discours Président", description: "Allocution officielle" },
+        { image: presidentSpeaking2, title: "Présentation AMESCI", description: "Vision et projets" },
+        { image: colloqueAudience, title: "Audience Engagée", description: "Participation active" },
+        { image: colloquePanel, title: "Panel Discussion", description: "Débat d'experts" },
+      ]
     },
     {
-      image: communityProject,
-      title: "Projet Communautaire",
-      description: "Construction de puits à Bayola",
-      category: "Projets"
+      title: "Gouvernance & Partenariats",
+      items: [
+        { image: boardMeeting, title: "Réunion Stratégique", description: "Planification" },
+        { image: presidentMeeting1, title: "Coordination", description: "Activités AMESCI" },
+        { image: presidentOfficial, title: "Représentation", description: "Événements majeurs" },
+        { image: teamPartenaires, title: "Collaboration", description: "Partenaires clés" },
+      ]
     },
     {
-      image: boardMeeting,
-      title: "Réunion Stratégique",
-      description: "Planification des activités",
-      category: "Organisation"
-    },
-    {
-      image: mediaInterview,
-      title: "Couverture Médiatique",
-      description: "Interview sur nos activités",
-      category: "Événements"
-    },
-    {
-      image: conferenceAudience,
-      title: "Conférence Publique",
-      description: "Sensibilisation communautaire",
-      category: "Événements"
-    },
-    {
-      image: partnershipEvent,
-      title: "Soirée de Partenariat",
-      description: "Rencontre avec nos partenaires",
-      category: "Organisation"
+      title: "Activités Jeunesse",
+      items: [
+        { image: youthSports, title: "Sports & Loisirs", description: "Programme jeunesse" },
+      ]
     }
   ];
 
-  const categories = ["Tous", "Formation", "Projets", "Humanitaire", "Événements", "Organisation", "Partenariat"];
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryCategories.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [galleryCategories.length]);
 
   return (
     <section id="gallery" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
-            Galerie
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            {t('gallery.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Découvrez nos activités et projets à travers ces images de nos interventions sur le terrain
+            {t('gallery.description')}
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant="outline-hope"
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
-        {/* Gallery Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {galleryItems.map((item, index) => (
-            <Card 
-              key={item.title}
-              className="overflow-hidden hover:shadow-hope transition-all duration-300 animate-fade-in group"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <Button
-                      size="sm"
-                      variant="outline-white"
-                    >
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Voir plus
-                    </Button>
-                  </div>
+        {/* Animated Category Slider */}
+        <div className="relative mb-12">
+          <div className="overflow-hidden rounded-2xl">
+            {galleryCategories.map((category, catIndex) => (
+              <div
+                key={catIndex}
+                className={`transition-all duration-1000 ${
+                  currentSlide === catIndex ? 'opacity-100' : 'opacity-0 absolute inset-0'
+                }`}
+              >
+                <div className="bg-gradient-to-r from-accent/10 to-hope/10 p-6 rounded-t-2xl">
+                  <h3 className="text-2xl font-bold text-foreground text-center">
+                    {category.title}
+                  </h3>
                 </div>
                 
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-hope/90 text-white text-sm font-medium rounded-full">
-                    {item.category}
-                  </span>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 p-6 bg-background/50 rounded-b-2xl">
+                  {category.items.map((item, itemIndex) => (
+                    <Card 
+                      key={itemIndex}
+                      className="overflow-hidden hover:shadow-vibrant transition-all duration-300 group animate-fade-in"
+                      style={{ animationDelay: `${itemIndex * 100}ms` }}
+                    >
+                      <div className="relative overflow-hidden">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </div>
+                      
+                      <div className="p-4">
+                        <h4 className="text-sm font-semibold text-foreground mb-1">
+                          {item.title}
+                        </h4>
+                        <p className="text-muted-foreground text-xs">
+                          {item.description}
+                        </p>
+                      </div>
+                    </Card>
+                  ))}
                 </div>
               </div>
-              
-              <div className="p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {item.description}
-                </p>
-              </div>
-            </Card>
-          ))}
+            ))}
+          </div>
+          
+          {/* Slide Indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {galleryCategories.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentSlide === index ? 'w-8 bg-accent' : 'w-2 bg-muted'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Load More Button */}
-        <div className="text-center mt-12">
+        <div className="text-center">
           <Button 
-            variant="outline-hope"
-            size="lg"
             onClick={() => navigate('/gallery')}
+            variant="default"
+            size="lg"
+            className="bg-accent hover:bg-accent/90 text-white"
           >
-            Voir plus d'images
+            {t('gallery.viewMore')}
           </Button>
-        </div>
-
-        {/* Video Section */}
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-foreground mb-4">
-              Nos Vidéos
-            </h3>
-            <p className="text-muted-foreground">
-              Découvrez nos activités en mouvement
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card className="p-6">
-              <div className="aspect-video bg-gradient-hope rounded-lg flex items-center justify-center mb-4">
-                <div className="text-center text-white">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="w-0 h-0 border-l-8 border-l-white border-y-6 border-y-transparent ml-1"></div>
-                  </div>
-                  <p className="text-sm">Formation Professionnelle</p>
-                </div>
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Présentation de nos formations</h4>
-              <p className="text-sm text-muted-foreground">Découvrez nos programmes de formation technique</p>
-            </Card>
-
-            <Card className="p-6">
-              <div className="aspect-video bg-gradient-trust rounded-lg flex items-center justify-center mb-4">
-                <div className="text-center text-white">
-                  <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <div className="w-0 h-0 border-l-8 border-l-white border-y-6 border-y-transparent ml-1"></div>
-                  </div>
-                  <p className="text-sm">Projets Communautaires</p>
-                </div>
-              </div>
-              <h4 className="font-semibold text-foreground mb-2">Impact dans la communauté</h4>
-              <p className="text-sm text-muted-foreground">Nos réalisations et témoignages</p>
-            </Card>
-          </div>
         </div>
       </div>
     </section>

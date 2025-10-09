@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft",
+        default: "bg-accent text-accent-foreground hover:bg-accent/90 shadow-soft",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline: "border-2 border-input bg-background text-foreground hover:bg-accent hover:text-accent-foreground",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent/10 hover:text-accent",
         link: "text-primary underline-offset-4 hover:underline",
         hero: "bg-gradient-hero text-white font-semibold hover:opacity-90 shadow-hope",
         hope: "bg-hope text-hope-foreground hover:bg-hope/90 shadow-soft border-2 border-hope",
         trust: "bg-trust text-trust-foreground hover:bg-trust/90 shadow-soft border-2 border-trust",
-        "outline-white": "border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-white hover:text-hope transition-all shadow-soft",
+        "outline-white": "border-2 border-white bg-white/10 backdrop-blur-sm text-white hover:bg-accent hover:text-white transition-all shadow-soft",
         "outline-hope": "border-2 border-hope text-hope bg-transparent hover:bg-hope hover:text-white transition-all",
         "outline-trust": "border-2 border-trust text-trust bg-transparent hover:bg-trust hover:text-white transition-all",
       },

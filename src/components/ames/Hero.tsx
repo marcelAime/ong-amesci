@@ -17,7 +17,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
               {t('hero.title')}
               <span className="block text-2xl md:text-3xl font-medium mt-2 text-white/90">
-                AMES-CI
+                AMES-CI - en Côte d'Ivoire
               </span>
             </h1>
             
@@ -50,16 +50,28 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Logo */}
+          {/* Logo with Stats */}
           <div className="animate-slide-in-right">
-            <div className="relative flex items-center justify-center">
+            <div className="relative">
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-vibrant opacity-20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute inset-0 bg-gradient-vibrant opacity-20 rounded-3xl blur-3xl animate-pulse"></div>
                 <img
                   src={amesLogo}
                   alt="Logo AMES-CI"
-                  className="relative w-full max-w-md h-auto object-contain rounded-full shadow-vibrant"
+                  className="relative w-full max-w-md h-auto object-cover rounded-3xl shadow-vibrant aspect-square"
                 />
+              </div>
+              
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                  <div className="text-4xl font-bold text-accent mb-2">7+</div>
+                  <div className="text-white/80 text-sm">Années d'expérience</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                  <div className="text-4xl font-bold text-accent mb-2">5000+</div>
+                  <div className="text-white/80 text-sm">Bénéficiaires</div>
+                </div>
               </div>
             </div>
           </div>

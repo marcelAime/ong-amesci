@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { MapPin, Phone, Mail, Facebook, Instagram, Twitter, Linkedin, Heart } from "lucide-react";
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter, Linkedin, Heart, LogIn } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useNavigate } from "react-router-dom";
 import amesLogo from "@/assets/ames-logo.jpg";
 
 const Footer = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const quickLinks = [
     { label: t('nav.home'), href: '#home' },
@@ -202,29 +204,15 @@ const Footer = () => {
               <span>{t('footer.rights')}</span>
             </div>
             
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="text-white/70 hover:text-white transition-colors"
-                onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                <Heart className="w-4 h-4 mr-2" />
-                Faire un don
-              </Button>
-              
-              <div className="flex items-center gap-2 text-sm text-white/70">
-                <span>Site web:</span>
-                <a 
-                  href="https://ames-ci.info" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-hope hover:text-hope/80 transition-colors"
-                >
-                  ames-ci.info
-                </a>
-              </div>
-            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => navigate('/auth')}
+              className="border-accent text-accent hover:bg-accent hover:text-white"
+            >
+              <LogIn className="w-4 h-4 mr-2" />
+              Connexion Président
+            </Button>
           </div>
         </div>
       </div>

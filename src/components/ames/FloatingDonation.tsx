@@ -15,22 +15,22 @@ const FloatingDonation = () => {
       {/* Floating Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-vibrant bg-gradient-energy hover:scale-110 transition-transform duration-300 animate-pulse"
+        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-vibrant bg-accent hover:bg-accent/90 hover:scale-110 transition-all duration-300"
         size="icon"
       >
         {isOpen ? (
           <X className="h-6 w-6 text-white" />
         ) : (
-          <Heart className="h-6 w-6 text-white" />
+          <Heart className="h-6 w-6 text-white animate-pulse" />
         )}
       </Button>
 
       {/* Popup Card */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-40 w-80 bg-white rounded-2xl shadow-vibrant border-2 border-energy animate-scale-in">
+        <div className="fixed bottom-24 right-6 z-40 w-80 bg-white rounded-2xl shadow-vibrant border-2 border-accent animate-scale-in">
           <div className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="h-12 w-12 rounded-full bg-gradient-energy flex items-center justify-center">
+              <div className="h-12 w-12 rounded-full bg-accent flex items-center justify-center">
                 <Heart className="h-6 w-6 text-white" />
               </div>
               <div>
@@ -45,7 +45,7 @@ const FloatingDonation = () => {
             
             <Button
               onClick={handleDonateClick}
-              className="w-full bg-gradient-energy hover:opacity-90 text-white font-semibold"
+              className="w-full bg-accent hover:bg-accent/90 text-white font-semibold"
             >
               <Heart className="w-4 h-4 mr-2" />
               Faire un don maintenant

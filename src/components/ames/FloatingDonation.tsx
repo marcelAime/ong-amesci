@@ -15,13 +15,18 @@ const FloatingDonation = () => {
       {/* Floating Button */}
       <Button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-vibrant bg-accent hover:bg-accent/90 hover:scale-110 transition-all duration-300"
-        size="icon"
+        className="fixed bottom-6 right-6 z-50 h-auto px-6 py-3 rounded-full shadow-vibrant bg-accent hover:bg-accent/90 hover:scale-110 transition-all duration-300 flex items-center gap-2"
       >
         {isOpen ? (
-          <X className="h-6 w-6 text-white" />
+          <>
+            <X className="h-5 w-5 text-white" />
+            <span className="text-white font-semibold text-sm">Fermer</span>
+          </>
         ) : (
-          <Heart className="h-6 w-6 text-white animate-pulse" />
+          <>
+            <Heart className="h-5 w-5 text-white animate-pulse" />
+            <span className="text-white font-semibold text-sm">Faire un don</span>
+          </>
         )}
       </Button>
 

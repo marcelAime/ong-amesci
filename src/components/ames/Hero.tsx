@@ -17,7 +17,7 @@ const Hero = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
               {t('hero.title')}
               <span className="block text-2xl md:text-3xl font-medium mt-2 text-white/90">
-                AMES-CI - en Côte d'Ivoire
+                Ambassadeurs de l'Espoir en Côte d'Ivoire
               </span>
             </h1>
             
@@ -65,11 +65,11 @@ const Hero = () => {
               {/* Stats Grid */}
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="text-4xl font-bold text-accent mb-2">7+</div>
+                  <div className="text-4xl font-bold text-accent mb-2">10+</div>
                   <div className="text-white/80 text-sm">Années d'expérience</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                  <div className="text-4xl font-bold text-accent mb-2">5000+</div>
+                  <div className="text-4xl font-bold text-accent mb-2">500+</div>
                   <div className="text-white/80 text-sm">Bénéficiaires</div>
                 </div>
               </div>

@@ -28,7 +28,7 @@ const Footer = () => {
     {
       icon: <Facebook className="w-5 h-5" />,
       name: "Facebook",
-      url: "https://facebook.com/ames-ci"
+      url: "https://web.facebook.com/ambassadeursdelespoirci"
     },
     {
       icon: <Instagram className="w-5 h-5" />,
@@ -83,7 +83,8 @@ const Footer = () => {
               <div className="flex items-center gap-3 text-sm">
                 <MapPin className="w-4 h-4 text-hope flex-shrink-0" />
                 <span className="text-white/80">
-                  Treichville, humble Nana Yamousso<br />
+                  Treichville, Immeuble Nana Yamousso<br />
+                  Abobo BC non loin de l'EPP Gendarmerie<br />
                   Abidjan - Côte d'Ivoire
                 </span>
               </div>
@@ -201,7 +202,7 @@ const Footer = () => {
             {/* Social Links */}
             <div>
               <h5 className="text-sm font-semibold text-white mb-3">
-                {t('footer.followus')}
+                Suivez-nous sur les réseaux sociaux
               </h5>
               <div className="flex gap-3">
                 {socialLinks.map((social) => (

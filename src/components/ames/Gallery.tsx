@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import formationProfessionnelle from "@/assets/formation-professionnelle.jpg";
@@ -22,6 +22,7 @@ import teamPartenaires from "@/assets/team-partenaires.jpg";
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
   const allImages = [
     { 
@@ -119,6 +120,17 @@ const Gallery = () => {
     setCurrentIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
   };
 
+  // Auto-scroll every second
+  useEffect(() => {
+    if (!isPaused) {
+      const interval = setInterval(() => {
+        nextSlide();
+      }, 3000); // Change image every 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [currentIndex, isPaused]);
+
   return (
     <section id="gallery" className="py-20 bg-background">
       <div className="container mx-auto px-4">
@@ -133,7 +145,11 @@ const Gallery = () => {
         </div>
 
         {/* Gallery Carousel */}
-        <div className="relative max-w-5xl mx-auto">
+        <div 
+          className="relative max-w-5xl mx-auto"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           <div className="overflow-hidden rounded-3xl">
             <Card className="overflow-hidden border-0 shadow-vibrant">
               <div className="relative">

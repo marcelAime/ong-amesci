@@ -81,6 +81,11 @@ const Auth = () => {
             <CardDescription>
               Accès réservé au président de l'ONG
             </CardDescription>
+            <div className="text-xs text-muted-foreground mt-2 p-3 bg-muted/50 rounded-lg">
+              <p className="font-semibold mb-1">Identifiants par défaut :</p>
+              <p>Email : contact@ong-ames-ci.org</p>
+              <p>Mot de passe : RTpIp4SUwUMV6ldGxcucAw==</p>
+            </div>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">

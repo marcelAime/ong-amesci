@@ -12,10 +12,10 @@ serve(async (req) => {
   }
 
   try {
-    // Utiliser la clé live Paystack
-    const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY') || 'pk_live_2d8acc6eadf2bed8a74edb9669e1e33b02c6b709';
+    // CLÉS LIVE PAYSTACK - MODE PRODUCTION UNIQUEMENT
+    const PAYSTACK_PUBLIC_KEY = 'pk_live_2d8acc6eadf2bed8a74edb9669e1e33b02c6b709';
     
-    console.log('Paystack key check:', PAYSTACK_PUBLIC_KEY ? 'Key found' : 'Key not found');
+    console.log('Paystack LIVE mode - Key loaded:', PAYSTACK_PUBLIC_KEY.substring(0, 10) + '...');
     
     if (!PAYSTACK_PUBLIC_KEY) {
       console.error('Paystack public key not configured in environment');

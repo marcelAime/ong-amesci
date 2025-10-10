@@ -87,22 +87,48 @@ const Footer = () => {
                   Abidjan - Côte d'Ivoire
                 </span>
               </div>
-              <div className="flex items-center gap-3 text-sm">
-                <Phone className="w-4 h-4 text-trust flex-shrink-0" />
-                <a 
-                  href="tel:+2250778044369" 
-                  className="text-white/80 hover:text-white transition-colors"
-                >
-                  +225 0778044369
-                </a>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-3 text-sm">
+                  <Phone className="w-4 h-4 text-trust flex-shrink-0" />
+                  <a 
+                    href="tel:+2252721523261" 
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    +225 2721523261
+                  </a>
+                </div>
+                <div className="flex items-center gap-3 text-sm pl-7">
+                  <a 
+                    href="tel:+2250778044369" 
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    +225 0778044369
+                  </a>
+                </div>
+                <div className="flex items-center gap-3 text-sm pl-7">
+                  <a 
+                    href="tel:+2250142495949" 
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    +225 0142495949
+                  </a>
+                </div>
+                <div className="flex items-center gap-3 text-sm pl-7">
+                  <a 
+                    href="tel:+2250554989162" 
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    +225 0554989162
+                  </a>
+                </div>
               </div>
               <div className="flex items-center gap-3 text-sm">
                 <Mail className="w-4 h-4 text-hope flex-shrink-0" />
                 <a 
-                  href="mailto:contact@ames-ci.info" 
+                  href="mailto:contact@ong-ames-ci.org" 
                   className="text-white/80 hover:text-white transition-colors"
                 >
-                  contact@ames-ci.info
+                  contact@ong-ames-ci.org
                 </a>
               </div>
             </div>
@@ -197,22 +223,22 @@ const Footer = () => {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col items-center gap-6">
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => navigate('/auth')}
+              className="border-accent text-accent hover:bg-accent hover:text-white px-8 py-3"
+            >
+              <LogIn className="w-5 h-5 mr-2" />
+              Connexion Président
+            </Button>
+            
             <div className="flex items-center gap-2 text-sm text-white/70">
               <span>© 2024 AMES-CI.</span>
               <span>{t('footer.rights')}</span>
             </div>
-            
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate('/auth')}
-              className="border-accent text-accent hover:bg-accent hover:text-white"
-            >
-              <LogIn className="w-4 h-4 mr-2" />
-              Connexion Président
-            </Button>
           </div>
         </div>
       </div>

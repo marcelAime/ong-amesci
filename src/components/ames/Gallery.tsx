@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import formationProfessionnelle from "@/assets/formation-professionnelle.jpg";
 import professionalTraining from "@/assets/professional-training.jpg";
 import trainingCenter from "@/assets/training-center.jpg";
@@ -19,75 +21,173 @@ import presidentOfficial from "@/assets/president-official.jpg";
 import teamPartenaires from "@/assets/team-partenaires.jpg";
 
 const Gallery = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const newPosition = prev + 1;
-        // Reset to 0 when we've scrolled through one complete set (17 images * 320px width)
-        if (newPosition >= 17 * 320) {
-          return 0;
-        }
-        return newPosition;
-      });
-    }, 30);
-
-    return () => clearInterval(interval);
-  }, []);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const allImages = [
-    { image: formationProfessionnelle, title: "Formation en Soudure" },
-    { image: professionalTraining, title: "Menuiserie Aluminium" },
-    { image: trainingCenter, title: "Centre Moderne" },
-    { image: communityDonation, title: "Distribution de Vivres" },
-    { image: medicalDonation, title: "Don de Matériel Médical" },
-    { image: constructionProject, title: "Infrastructures" },
-    { image: presidentSpeaking1, title: "Discours Président" },
-    { image: presidentSpeaking2, title: "Présentation AMESCI" },
-    { image: colloqueAudience, title: "Audience Engagée" },
-    { image: colloquePanel, title: "Panel Discussion" },
-    { image: colloqueGroupPhoto, title: "Photo de Groupe" },
-    { image: boardMeeting, title: "Réunion Stratégique" },
-    { image: presidentMeeting1, title: "Coordination" },
-    { image: presidentMeeting2, title: "Réunion de Travail" },
-    { image: presidentOfficial, title: "Représentation" },
-    { image: teamPartenaires, title: "Collaboration" },
-    { image: youthSports, title: "Sports & Loisirs" },
+    { 
+      image: formationProfessionnelle, 
+      title: "Formation Professionnelle",
+      event: "Programme de Formation en Soudure - Développement des compétences techniques"
+    },
+    { 
+      image: professionalTraining, 
+      title: "Menuiserie Aluminium",
+      event: "Atelier de Formation - Menuiserie et travail de l'aluminium"
+    },
+    { 
+      image: trainingCenter, 
+      title: "Centre de Formation Moderne",
+      event: "Nos Infrastructures - Centre équipé pour l'apprentissage"
+    },
+    { 
+      image: communityDonation, 
+      title: "Distribution de Vivres",
+      event: "Action Humanitaire - Soutien aux communautés vulnérables"
+    },
+    { 
+      image: medicalDonation, 
+      title: "Don de Matériel Médical",
+      event: "Santé pour Tous - Distribution d'équipements médicaux"
+    },
+    { 
+      image: constructionProject, 
+      title: "Projet d'Infrastructure",
+      event: "Développement Communautaire - Construction d'installations"
+    },
+    { 
+      image: presidentSpeaking1, 
+      title: "Discours du Président",
+      event: "Événement Officiel - Allocution présidentielle"
+    },
+    { 
+      image: presidentSpeaking2, 
+      title: "Présentation AMES-CI",
+      event: "Conférence - Présentation des activités de l'ONG"
+    },
+    { 
+      image: colloqueAudience, 
+      title: "Audience Engagée",
+      event: "Colloque - Participation active du public"
+    },
+    { 
+      image: colloquePanel, 
+      title: "Panel de Discussion",
+      event: "Débat Public - Échanges avec les experts"
+    },
+    { 
+      image: colloqueGroupPhoto, 
+      title: "Photo de Groupe",
+      event: "Colloque AMES-CI - Rassemblement des participants"
+    },
+    { 
+      image: boardMeeting, 
+      title: "Réunion Stratégique",
+      event: "Conseil d'Administration - Planification des actions"
+    },
+    { 
+      image: presidentMeeting1, 
+      title: "Coordination",
+      event: "Réunion de Coordination - Planification des projets"
+    },
+    { 
+      image: presidentMeeting2, 
+      title: "Réunion de Travail",
+      event: "Session de Travail - Suivi des activités"
+    },
+    { 
+      image: presidentOfficial, 
+      title: "Représentation Officielle",
+      event: "Événement Officiel - Représentation de l'ONG"
+    },
+    { 
+      image: teamPartenaires, 
+      title: "Collaboration avec Partenaires",
+      event: "Partenariat - Rencontre avec les collaborateurs"
+    },
+    { 
+      image: youthSports, 
+      title: "Sports et Loisirs pour Jeunes",
+      event: "Activités Sportives - Promotion du sport chez les jeunes"
+    },
   ];
 
-  // Double the array for seamless looping
-  const displayImages = [...allImages, ...allImages];
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % allImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+  };
 
   return (
-    <section id="gallery" className="py-20 bg-background overflow-hidden">
+    <section id="gallery" className="py-20 bg-background">
       <div className="container mx-auto px-4">
-        {/* Continuous Scrolling Gallery */}
-        <div className="relative">
-          <div 
-            className="flex gap-6 transition-transform duration-100 ease-linear"
-            style={{ 
-              transform: `translateX(-${currentSlide}px)`,
-              width: `${displayImages.length * 320}px`
-            }}
-          >
-            {displayImages.map((item, index) => (
-              <Card 
-                key={index}
-                className="flex-shrink-0 w-72 overflow-hidden hover:shadow-vibrant transition-all duration-300 group"
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h4 className="text-sm font-semibold">{item.title}</h4>
-                  </div>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Galerie{" "}
+            <span className="bg-gradient-hero bg-clip-text text-transparent">
+              Photos
+            </span>
+          </h2>
+          <p className="text-muted-foreground">Découvrez nos activités et réalisations</p>
+        </div>
+
+        {/* Gallery Carousel */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="overflow-hidden rounded-3xl">
+            <Card className="overflow-hidden border-0 shadow-vibrant">
+              <div className="relative">
+                <img
+                  src={allImages[currentIndex].image}
+                  alt={allImages[currentIndex].title}
+                  className="w-full h-[500px] object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                
+                {/* Image Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-2xl md:text-3xl font-bold mb-2">
+                    {allImages[currentIndex].title}
+                  </h3>
+                  <p className="text-white/90 text-lg">
+                    {allImages[currentIndex].event}
+                  </p>
                 </div>
-              </Card>
+              </div>
+            </Card>
+          </div>
+
+          {/* Navigation Buttons */}
+          <Button
+            onClick={prevSlide}
+            variant="outline"
+            size="icon"
+            className="absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </Button>
+          
+          <Button
+            onClick={nextSlide}
+            variant="outline"
+            size="icon"
+            className="absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 rounded-full bg-white/90 hover:bg-white shadow-lg"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </Button>
+
+          {/* Indicators */}
+          <div className="flex justify-center gap-2 mt-6">
+            {allImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                className={`h-2 rounded-full transition-all ${
+                  index === currentIndex 
+                    ? 'w-8 bg-accent' 
+                    : 'w-2 bg-muted-foreground/30 hover:bg-muted-foreground/50'
+                }`}
+              />
             ))}
           </div>
         </div>

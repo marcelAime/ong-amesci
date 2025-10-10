@@ -69,8 +69,10 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Téléphone</h4>
                     <p className="text-muted-foreground">
-                      +225 0759950823<br />
-                      Urgences: +225 0759950823
+                      +225 2721523261<br />
+                      +225 0778044369<br />
+                      +225 0142495949<br />
+                      +225 0554989162
                     </p>
                   </div>
                 </div>
@@ -84,8 +86,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Email</h4>
                     <p className="text-muted-foreground">
-                      contact@ongsante.ci<br />
-                      info@ongsante.ci
+                      contact@ong-ames-ci.org
                     </p>
                   </div>
                 </div>

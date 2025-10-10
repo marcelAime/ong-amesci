@@ -401,7 +401,7 @@ const Donation = () => {
               <Button 
                 variant="outline-white"
                 className="w-full"
-                onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Nous contacter
               </Button>

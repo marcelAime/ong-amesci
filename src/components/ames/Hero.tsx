@@ -15,9 +15,9 @@ const Hero = () => {
           {/* Content */}
           <div className="text-white">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
-              {t('hero.title')}
+              Ambassadeurs de l'Espoir en Côte d'Ivoire
               <span className="block text-2xl md:text-3xl font-medium mt-2 text-white/90">
-                Ambassadeurs de l'Espoir en Côte d'Ivoire
+                AMES-CI
               </span>
             </h1>
             

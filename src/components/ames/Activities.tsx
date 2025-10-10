@@ -186,7 +186,7 @@ const Activities = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 variant="outline-white"
-                onClick={() => window.location.href = '/contact'}
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 Nous rejoindre
               </Button>

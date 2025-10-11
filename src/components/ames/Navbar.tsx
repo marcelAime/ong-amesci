@@ -28,7 +28,14 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <a 
+            href="#home" 
+            className="flex items-center space-x-3 cursor-pointer hover:opacity-80 transition-opacity"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img 
               src={amesLogo} 
               alt="AMES-CI Logo" 
@@ -38,7 +45,7 @@ const Navbar = () => {
               <span className="text-lg font-bold text-hope">AMES-CI</span>
               <div className="text-xs text-muted-foreground">Ambassadeurs de l'Espoir</div>
             </div>
-          </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-2">

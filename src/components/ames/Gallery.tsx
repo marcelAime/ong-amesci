@@ -19,6 +19,11 @@ import presidentMeeting1 from "@/assets/president-meeting-1.jpg";
 import presidentMeeting2 from "@/assets/president-meeting-2.jpg";
 import presidentOfficial from "@/assets/president-official.jpg";
 import teamPartenaires from "@/assets/team-partenaires.jpg";
+import audienceMarino from "@/assets/audience-marino.jpg";
+import audienceYahaya from "@/assets/audience-yahaya.jpg";
+import seminaireCdides from "@/assets/seminaire-cdides.jpg";
+import campagneOphtalmo1 from "@/assets/campagne-ophtalmo-1.jpg";
+import campagneOphtalmo2 from "@/assets/campagne-ophtalmo-2.jpg";
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -109,6 +114,31 @@ const Gallery = () => {
       image: youthSports, 
       title: "Sports et Loisirs pour Jeunes",
       event: "Activités Sportives - Promotion du sport chez les jeunes"
+    },
+    {
+      image: audienceMarino,
+      title: "Audience M. Bamba Anzoumana dit Marino",
+      event: "L'ONG Ambassadeurs de l'Espoir en Côte d'Ivoire a eu l'honneur d'être reçue en audience par M. Bamba Anzoumana dit Marino, figure emblématique et parrain de la jeunesse ivoirienne"
+    },
+    {
+      image: audienceYahaya,
+      title: "Audience Professeur Yahaya Karamoko",
+      event: "Une délégation de l'ONG Ambassadeurs de l'Espoir en Côte d'Ivoire, conduite par son Président Dr Touré Fetegue Mandjou, a été reçue en audience par le Professeur Yahaya Karamoko, Vice-président de l'UNA chargé de la Recherche et des Relations Extérieures"
+    },
+    {
+      image: seminaireCdides,
+      title: "Séminaire CDIDES",
+      event: "Les Ambassadeurs d'Espoir Côte d'Ivoire, sous la direction de leur président, Dr Touré Fetegue Mandjou et Charger de la communication Doumbia alassane ont participé à un séminaire scientifique sur la diplomatie économique, organisé par la Fondation CDIDES"
+    },
+    {
+      image: campagneOphtalmo1,
+      title: "Campagne Chirurgie Ophtalmologique",
+      event: "Campagne de chirurgie ophtalmologique gratuite - 1 000 consultations et 300 opérations réalisées en partenariat avec le PNSO et le Ministère de la Santé"
+    },
+    {
+      image: campagneOphtalmo2,
+      title: "Soins Oculaires Gratuits",
+      event: "Campagne de santé oculaire - Consultations et soins gratuits pour les populations vulnérables"
     },
   ];
 

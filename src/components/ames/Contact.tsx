@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter, Music } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 
@@ -48,21 +48,21 @@ const Contact = () => {
     {
       icon: <MapPin className="w-6 h-6" />,
       title: t('contact.address'),
-      content: "Treichville, humble Nana Yamousso\nAbidjan - Côte d'Ivoire",
+      content: "Treichville, Immeuble Nana Yamousso\nAbobo BC non loin de l'EPP Gendarmerie\nAbidjan - Côte d'Ivoire",
       color: "hope"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: t('contact.phone'),
-      content: "+225 0778044369",
-      action: () => window.open('tel:+2250778044369'),
+      content: "+225 2721523261\n+225 0778044369\n+225 0142495949\n+225 0554989162",
+      action: () => window.open('tel:+2252721523261'),
       color: "trust"
     },
     {
       icon: <Mail className="w-6 h-6" />,
       title: t('contact.email'),
-      content: "contact@ames-ci.info",
-      action: () => window.open('mailto:contact@ames-ci.info'),
+      content: "contact@ong-ames-ci.org",
+      action: () => window.open('mailto:contact@ong-ames-ci.org'),
       color: "hope"
     },
     {
@@ -77,7 +77,7 @@ const Contact = () => {
     {
       icon: <Facebook className="w-5 h-5" />,
       name: "Facebook",
-      url: "https://facebook.com/ames-ci",
+      url: "https://web.facebook.com/ambassadeursdelespoirci",
       color: "text-blue-600"
     },
     {
@@ -91,6 +91,12 @@ const Contact = () => {
       name: "Twitter",
       url: "https://twitter.com/ames-ci",
       color: "text-blue-400"
+    },
+    {
+      icon: <Music className="w-5 h-5" />,
+      name: "TikTok",
+      url: "https://tiktok.com/@ames-ci",
+      color: "text-foreground"
     }
   ];
 
@@ -263,7 +269,8 @@ const Contact = () => {
                   <MapPin className="w-12 h-12 text-hope mx-auto mb-4" />
                   <h4 className="font-semibold text-foreground mb-2">Notre Localisation</h4>
                   <p className="text-muted-foreground">
-                    Treichville, humble Nana Yamousso<br />
+                    Treichville, Immeuble Nana Yamousso<br />
+                    Abobo BC non loin de l'EPP Gendarmerie<br />
                     Abidjan - Côte d'Ivoire
                   </p>
                 </div>

@@ -2,15 +2,33 @@
 
 ## 🔐 Authentification du Président
 
-### Création du compte dans Supabase
+### Création automatique du compte
 
-Le compte président doit être créé manuellement dans Supabase :
+Le compte président peut maintenant être créé automatiquement via l'interface web.
 
-**Identifiants à créer :**
+**Accédez à la page de configuration :**
+👉 https://[votre-domaine]/setup-president
+
+**Identifiants du compte :**
 - Email : `contact@ong-ames-ci.org`
 - Mot de passe : `RTpIp4SUwUMV6ldGxcucAw==`
+- Rôle : Président
 
-### Étapes pour créer le compte :
+### Procédure simplifiée :
+
+1. **Ouvrir la page de configuration :**
+   - Aller sur `/setup-president`
+   - Cliquer sur "Créer le compte président"
+   - Attendre la confirmation
+
+2. **Se connecter :**
+   - Une fois créé, aller sur `/auth`
+   - Utiliser les identifiants ci-dessus
+   - Accéder au Dashboard
+
+### Méthode alternative (manuelle) :
+
+Si vous préférez créer le compte manuellement dans Supabase :
 
 1. **Se connecter à Supabase :**
    - Aller sur https://supabase.com
@@ -24,10 +42,6 @@ Le compte président doit être créé manuellement dans Supabase :
      - Mot de passe: `RTpIp4SUwUMV6ldGxcucAw==`
      - Cocher "Auto Confirm User" pour éviter la validation par email
    - Cliquer sur "Create user"
-
-3. **Accès au Dashboard :**
-   - Une fois créé, le président pourra se connecter via `/auth`
-   - Il aura accès au Dashboard pour voir les transactions
 
 ### Changement de mot de passe
 

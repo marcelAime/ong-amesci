@@ -10,6 +10,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import App from "./App.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Auth from "./pages/Auth.tsx";
+import SetupPresident from "./pages/SetupPresident.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import NewsPage from "./pages/NewsPage.tsx";
 import "./index.css";
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")!).render(
                 <Route path="/" element={<App />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/auth" element={<Auth />} />
+                <Route path="/setup-president" element={<SetupPresident />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/news" element={<NewsPage />} />
               </Routes>

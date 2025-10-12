@@ -148,13 +148,13 @@ const Donation = () => {
     }
 
     try {
-      // Initialize Paystack payment
+      // Initialize Paystack payment (MODE LIVE)
       const handler = (window as any).PaystackPop.setup({
         key: paystackKey,
         email: email,
         amount: amount * 100,
         currency: 'XOF',
-        channels: ['card', 'mobile_money'],
+        channels: ['card', 'mobile_money', 'bank'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
         metadata: {
           custom_fields: [

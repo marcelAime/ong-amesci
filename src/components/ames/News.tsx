@@ -130,16 +130,17 @@ Cette rencontre marque une étape importante dans le renforcement des partenaria
         </div>
 
         {/* Featured Article */}
-        <Card className="mb-12 overflow-hidden hover:shadow-hope transition-all duration-300">
+        <Card className="mb-12 overflow-hidden hover:shadow-vibrant transition-all duration-500 group border-2 hover:border-transparent">
           <div className="grid lg:grid-cols-2 gap-0">
             <div className="h-64 lg:h-auto relative overflow-hidden">
               <img 
                 src={newsItems[0].image} 
                 alt={newsItems[0].title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent"></div>
             </div>
-            <div className="p-8">
+            <div className="p-8 relative">
               <div className="flex items-center gap-4 mb-4">
                 <Badge className={getCategoryColor(newsItems[0].category)}>
                   {newsItems[0].category}
@@ -147,7 +148,7 @@ Cette rencontre marque une étape importante dans le renforcement des partenaria
                 <span className="text-sm text-muted-foreground">Article à la une</span>
               </div>
               
-              <h3 className="text-2xl font-bold text-foreground mb-4">
+              <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-hope transition-colors">
                 {newsItems[0].title}
               </h3>
               
@@ -181,16 +182,16 @@ Cette rencontre marque une étape importante dans le renforcement des partenaria
           {newsItems.slice(1).map((article, index) => (
             <Card 
               key={article.id}
-              className="overflow-hidden hover:shadow-trust transition-all duration-300 animate-fade-in group cursor-pointer"
+              className="overflow-hidden hover:shadow-vibrant transition-all duration-500 animate-fade-in group cursor-pointer border-2 hover:border-transparent"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="h-48 relative overflow-hidden">
                 <img 
                   src={article.image} 
                   alt={article.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                 <div className="absolute top-4 left-4">
                   <Badge className={getCategoryColor(article.category)}>
                     {article.category}
@@ -221,7 +222,7 @@ Cette rencontre marque une étape importante dans le renforcement des partenaria
                     {article.author}
                   </div>
                   
-                  <Button variant="ghost" size="sm" className="text-hope hover:text-hope/80 p-0">
+                  <Button variant="ghost" size="sm" className="text-hope hover:text-hope/80 p-0 group-hover:translate-x-1 transition-transform">
                     Lire plus
                     <ArrowRight className="w-3 h-3 ml-1" />
                   </Button>

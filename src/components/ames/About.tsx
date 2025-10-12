@@ -8,6 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import forumOng from "@/assets/forum-ong-partenaires.jpg";
 import colloqueGroup from "@/assets/colloque-large-group.jpg";
 import ambassadeursMeeting from "@/assets/ambassadeurs-meeting.jpg";
@@ -69,7 +70,18 @@ const About = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
           {/* Carousel */}
           <div className="animate-slide-in-left">
-            <Carousel className="w-full">
+            <Carousel 
+              className="w-full"
+              plugins={[
+                Autoplay({
+                  delay: 2500,
+                  stopOnInteraction: true,
+                })
+              ]}
+              opts={{
+                loop: true,
+              }}
+            >
               <CarouselContent>
                 {carouselImages.map((image, index) => (
                   <CarouselItem key={index}>
@@ -77,14 +89,14 @@ const About = () => {
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-96 object-cover rounded-2xl shadow-hope"
+                        className="w-full h-96 object-cover rounded-2xl shadow-vibrant transition-transform duration-500 hover:scale-[1.02]"
                       />
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="left-4" />
-              <CarouselNext className="right-4" />
+              <CarouselPrevious className="left-4 bg-white/90 hover:bg-white shadow-soft border-none" />
+              <CarouselNext className="right-4 bg-white/90 hover:bg-white shadow-soft border-none" />
             </Carousel>
           </div>
 
@@ -131,22 +143,24 @@ const About = () => {
           {values.map((value, index) => (
             <Card 
               key={value.title}
-              className="p-8 text-center hover:shadow-hope transition-all duration-300 animate-fade-in group"
+              className="p-8 text-center hover:shadow-vibrant transition-all duration-500 animate-fade-in group border-2 hover:border-transparent relative overflow-hidden"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform ${
-                value.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+              <div className="absolute inset-0 bg-gradient-hero opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+              
+              <div className={`w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-all duration-300 relative ${
+                value.color === 'hope' ? 'bg-hope/10 group-hover:bg-hope/20' : 'bg-trust/10 group-hover:bg-trust/20'
               }`}>
                 <div className={value.color === 'hope' ? 'text-hope' : 'text-trust'}>
                   {value.icon}
                 </div>
               </div>
               
-              <h3 className="text-xl font-semibold text-foreground mb-4">
+              <h3 className="text-xl font-semibold text-foreground mb-4 relative">
                 {value.title}
               </h3>
               
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed relative">
                 {value.description}
               </p>
             </Card>

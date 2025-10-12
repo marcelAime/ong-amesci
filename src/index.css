@@ -66,10 +66,10 @@
     
     /* Elegant shadows with logo colors */
     --shadow-soft: 0 4px 20px -4px hsl(var(--hope) / 0.15);
-    --shadow-hope: 0 8px 35px -8px hsl(var(--hope) / 0.25);
-    --shadow-trust: 0 8px 35px -8px hsl(var(--trust) / 0.25);
-    --shadow-energy: 0 8px 35px -8px hsl(var(--energy) / 0.25);
-    --shadow-vibrant: 0 10px 40px -10px hsl(var(--hope) / 0.3);
+    --shadow-hope: 0 10px 40px -10px hsl(var(--hope) / 0.3);
+    --shadow-trust: 0 10px 40px -10px hsl(var(--trust) / 0.3);
+    --shadow-energy: 0 10px 40px -10px hsl(var(--energy) / 0.3);
+    --shadow-vibrant: 0 15px 50px -12px hsl(var(--hope) / 0.35), 0 8px 25px -8px hsl(var(--trust) / 0.2);
     
     --radius: 0.75rem;
 
@@ -141,5 +141,20 @@
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+    scroll-behavior: smooth;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply tracking-tight;
+  }
+  
+  button {
+    @apply transition-all duration-300;
+  }
+  
+  a {
+    @apply transition-colors duration-200;
   }
 }

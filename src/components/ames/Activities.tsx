@@ -93,18 +93,19 @@ const Activities = () => {
           {stats.map((stat, index) => (
             <Card 
               key={stat.label}
-              className="p-6 text-center hover:shadow-hope transition-all duration-300 animate-fade-in"
+              className="p-6 text-center hover:shadow-vibrant transition-all duration-500 animate-fade-in group border-2 hover:border-transparent relative overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 ${
-                stat.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+              <div className="absolute inset-0 bg-gradient-hero opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 relative ${
+                stat.color === 'hope' ? 'bg-hope/10 group-hover:bg-hope/20' : 'bg-trust/10 group-hover:bg-trust/20'
               }`}>
                 <div className={stat.color === 'hope' ? 'text-hope' : 'text-trust'}>
                   {stat.icon}
                 </div>
               </div>
-              <div className="text-2xl font-bold text-foreground mb-2">{stat.number}</div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
+              <div className="text-2xl font-bold text-foreground mb-2 relative">{stat.number}</div>
+              <div className="text-sm text-muted-foreground relative">{stat.label}</div>
             </Card>
           ))}
         </div>
@@ -120,24 +121,26 @@ const Activities = () => {
             >
               {/* Content */}
               <div className={`animate-slide-in-left ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                <Card className="p-8 h-full hover:shadow-vibrant transition-all duration-300">
-                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 ${
-                    activity.color === 'hope' ? 'bg-hope/10' : 'bg-trust/10'
+                <Card className="p-8 h-full hover:shadow-vibrant transition-all duration-500 group border-2 hover:border-transparent relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-hero opacity-0 group-hover:opacity-5 transition-opacity duration-500"></div>
+                  
+                  <div className={`w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-all duration-300 relative ${
+                    activity.color === 'hope' ? 'bg-hope/10 group-hover:bg-hope/20' : 'bg-trust/10 group-hover:bg-trust/20'
                   }`}>
                     <div className={activity.color === 'hope' ? 'text-hope' : 'text-trust'}>
                       {activity.icon}
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-foreground mb-4">
+                  <h3 className="text-2xl font-bold text-foreground mb-4 relative">
                     {activity.title}
                   </h3>
                   
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-6 leading-relaxed relative">
                     {activity.description}
                   </p>
                   
-                  <div className="space-y-3 mb-8">
+                  <div className="space-y-3 mb-8 relative">
                     {activity.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3">
                         <div className={`w-2 h-2 rounded-full ${
@@ -151,6 +154,7 @@ const Activities = () => {
                   <Button 
                     variant={activity.color === "hope" ? "outline-hope" : "outline-trust"}
                     onClick={() => window.open('https://wa.me/2250778044369', '_blank')}
+                    className="relative"
                   >
                     En savoir plus
                   </Button>
@@ -160,13 +164,13 @@ const Activities = () => {
               {/* Image */}
               {activity.image && (
                 <div className={`animate-slide-in-right ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
-                  <div className="relative">
+                  <div className="relative group">
                     <img
                       src={activity.image}
                       alt={activity.title}
-                      className="w-full h-80 object-cover rounded-2xl shadow-hope"
+                      className="w-full h-80 object-cover rounded-2xl shadow-vibrant transition-transform duration-500 group-hover:scale-[1.02]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent rounded-2xl group-hover:from-black/30 transition-colors duration-500"></div>
                   </div>
                 </div>
               )}

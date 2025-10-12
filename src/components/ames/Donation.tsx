@@ -152,8 +152,9 @@ const Donation = () => {
       const handler = (window as any).PaystackPop.setup({
         key: paystackKey,
         email: email,
-        amount: amount * 100, // Convert to kobo/pesewas
+        amount: amount * 100,
         currency: 'XOF',
+        channels: ['card', 'mobile_money'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
         metadata: {
           custom_fields: [

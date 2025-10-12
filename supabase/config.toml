@@ -59,6 +59,3 @@ verify_jwt = false
 
 [functions.paystack-transactions]
 verify_jwt = true
-
-[functions.create-president-account]
-verify_jwt = false

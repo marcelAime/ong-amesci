@@ -1,10 +1,39 @@
 import { Card } from "@/components/ui/card";
 import { Target, Eye, Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-import teamMeeting from "@/assets/team-meeting.jpg";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import forumOng from "@/assets/forum-ong-partenaires.jpg";
+import colloqueGroup from "@/assets/colloque-large-group.jpg";
+import ambassadeursMeeting from "@/assets/ambassadeurs-meeting.jpg";
+import delegationQatar from "@/assets/delegation-qatar.jpg";
+import examenOphtalmologique from "@/assets/examen-ophtalmologique.jpg";
+import soinsMedicaux from "@/assets/soins-medicaux-ames.jpg";
+import distributionAlimentaire1 from "@/assets/distribution-alimentaire-1.jpg";
+import distributionAlimentaire2 from "@/assets/distribution-alimentaire-2.jpg";
+import constructionPompe from "@/assets/construction-pompe.jpg";
+import distributionRamadan from "@/assets/distribution-ramadan.jpg";
 
 const About = () => {
   const { t } = useLanguage();
+
+  const carouselImages = [
+    { src: forumOng, alt: "Forum des ONG Partenaires AMES-CI" },
+    { src: colloqueGroup, alt: "Colloque AMES-CI - Photo de groupe" },
+    { src: ambassadeursMeeting, alt: "Réunion des Ambassadeurs de l'Espoir" },
+    { src: delegationQatar, alt: "Délégation AMES-CI au Qatar" },
+    { src: examenOphtalmologique, alt: "Examen ophtalmologique gratuit" },
+    { src: soinsMedicaux, alt: "Soins médicaux AMES-CI" },
+    { src: distributionAlimentaire1, alt: "Distribution alimentaire aux populations" },
+    { src: distributionAlimentaire2, alt: "Aide alimentaire aux familles vulnérables" },
+    { src: constructionPompe, alt: "Construction de pompe à eau" },
+    { src: distributionRamadan, alt: "Distribution alimentaire pendant le Ramadan" }
+  ];
 
   const values = [
     {
@@ -38,13 +67,25 @@ const About = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Image */}
+          {/* Carousel */}
           <div className="animate-slide-in-left">
-            <img
-              src={teamMeeting}
-              alt="Équipe AMES-CI en réunion"
-              className="w-full h-96 object-cover rounded-2xl shadow-hope"
-            />
+            <Carousel className="w-full">
+              <CarouselContent>
+                {carouselImages.map((image, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-96 object-cover rounded-2xl shadow-hope"
+                      />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
           </div>
 
           {/* Content */}

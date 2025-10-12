@@ -1,98 +1,103 @@
-# Instructions importantes pour l'authentification et Paystack
+# Instructions Authentification & Paystack
 
-## 🔐 Authentification du Président
+## ✅ PAYSTACK EN MODE LIVE
 
-### Création automatique du compte
-
-Le compte président peut maintenant être créé automatiquement via l'interface web.
-
-**Accédez à la page de configuration :**
-👉 https://[votre-domaine]/setup-president
-
-**Identifiants du compte :**
-- Email : `contact@ong-ames-ci.org`
-- Mot de passe : `RTpIp4SUwUMV6ldGxcucAw==`
-- Rôle : Président
-
-### Procédure simplifiée :
-
-1. **Ouvrir la page de configuration :**
-   - Aller sur `/setup-president`
-   - Cliquer sur "Créer le compte président"
-   - Attendre la confirmation
-
-2. **Se connecter :**
-   - Une fois créé, aller sur `/auth`
-   - Utiliser les identifiants ci-dessus
-   - Accéder au Dashboard
-
-### Méthode alternative (manuelle) :
-
-Si vous préférez créer le compte manuellement dans Supabase :
-
-1. **Se connecter à Supabase :**
-   - Aller sur https://supabase.com
-   - Se connecter au projet AMES-CI
-
-2. **Créer l'utilisateur :**
-   - Aller dans "Authentication" → "Users"
-   - Cliquer sur "Add user" → "Create new user"
-   - Entrer :
-     - Email: `contact@ong-ames-ci.org`
-     - Mot de passe: `RTpIp4SUwUMV6ldGxcucAw==`
-     - Cocher "Auto Confirm User" pour éviter la validation par email
-   - Cliquer sur "Create user"
-
-### Changement de mot de passe
-
-Le président peut changer son mot de passe :
-- Via le Dashboard (fonctionnalité à ajouter si nécessaire)
-- Via Supabase directement dans "Authentication" → "Users"
-
----
-
-## 💳 Configuration Paystack en Mode LIVE
-
-### Vérification de la clé actuelle
-
-La clé Paystack LIVE est configurée dans le code :
+Le code est **déjà configuré en mode LIVE** avec votre clé publique :
 - `pk_live_2d8acc6eadf2bed8a74edb9669e1e33b02c6b709`
 
-### Pourquoi "Test" s'affiche encore ?
+Si vous voyez encore "Test" lors des paiements, cela vient de votre compte Paystack :
 
-Le message "Test" qui apparaît lors du paiement peut provenir de :
+### Actions à faire sur Paystack :
 
-1. **Le compte Paystack est en mode Test**
-   - Même avec une clé `pk_live_...`, si votre compte Paystack n'est pas activé en production, les paiements restent en mode test
-   
-2. **Solution :**
-   - Se connecter à https://dashboard.paystack.com
-   - Aller dans "Settings" → "Account Settings"
-   - Vérifier que votre compte est activé pour les transactions LIVE
-   - Il faut souvent soumettre des documents d'entreprise pour activer le mode LIVE
+1. **Connectez-vous à votre Dashboard Paystack** : https://dashboard.paystack.com/
+2. **Allez dans Settings → Preferences**
+3. **Activez le mode Live** si ce n'est pas déjà fait
+4. **Vérifiez que votre compte est complètement vérifié** (documents KYC, etc.)
+5. **Testez un paiement réel** pour confirmer
 
-3. **Activation du compte Live :**
-   - Soumettre les documents requis (KYC)
-   - Attendre l'approbation de Paystack
-   - Une fois approuvé, le mode "Test" disparaîtra automatiquement
-
-### Note importante
-
-**Le code est déjà configuré en LIVE**, le problème vient uniquement de l'activation du compte Paystack sur leur plateforme.
+Le message "Test" disparaîtra une fois que votre compte Paystack sera complètement activé en mode production.
 
 ---
 
-## 📝 Résumé des actions à faire
+## ✅ AUTHENTIFICATION DU RESPONSABLE
 
-✅ **Fait dans le code :**
-- Configuration Paystack LIVE
-- Page d'authentification fonctionnelle
-- Dashboard avec accès restreint
+### Système Complet Disponible
 
-⚠️ **À faire manuellement :**
-1. Créer l'utilisateur président dans Supabase Authentication
-2. Activer le compte Paystack en mode LIVE sur dashboard.paystack.com
+Accédez à la page d'authentification : **[Votre URL]/auth**
+
+Le système inclut maintenant :
+
+### 1. **Inscription (Créer un compte)**
+   - Le responsable peut créer son propre compte
+   - Email : `contact@ong-ames-ci.org`
+   - Mot de passe : À définir par le responsable (minimum 8 caractères)
+   - **Confirmation par email requise** : Un email de vérification sera envoyé
+
+### 2. **Connexion**
+   - Se connecter avec l'email et le mot de passe
+   - Accès au dashboard après connexion réussie
+
+### 3. **Récupération de mot de passe**
+   - Option "Mot de passe oublié ?" disponible
+   - Un email avec un lien de réinitialisation sera envoyé
+   - Le responsable peut définir un nouveau mot de passe
 
 ---
 
-Pour toute question, contacter le support technique.
+## 🔧 Configuration Email (Important)
+
+Pour que les emails de confirmation et de récupération fonctionnent :
+
+1. **Allez dans votre Supabase** : https://supabase.com/dashboard
+2. **Sélectionnez votre projet AMES-CI**
+3. **Authentication → Email Templates**
+4. **Vérifiez que les templates sont configurés** :
+   - Confirmation Signup
+   - Reset Password
+   - Magic Link
+
+5. **Redirect URLs** :
+   - Allez dans **Authentication → URL Configuration**
+   - Ajoutez votre URL de production dans "Redirect URLs"
+   - Format : `https://votre-domaine.com/auth`
+
+---
+
+## 📝 Étapes pour le Responsable
+
+### Première connexion :
+
+1. Aller sur : **[Votre URL]/auth**
+2. Cliquer sur **"Créer un compte"**
+3. Entrer :
+   - Email : `contact@ong-ames-ci.org`
+   - Mot de passe : (choisir un mot de passe sécurisé)
+   - Confirmer le mot de passe
+4. Cliquer sur **"Créer le compte"**
+5. **Vérifier l'email** et cliquer sur le lien de confirmation
+6. Retourner sur **/auth** et **se connecter**
+
+### Si mot de passe oublié :
+
+1. Cliquer sur **"Mot de passe oublié ?"**
+2. Entrer l'email
+3. Vérifier l'email reçu
+4. Cliquer sur le lien et définir un nouveau mot de passe
+
+---
+
+## 🔒 Sécurité
+
+- ✅ Les mots de passe sont chiffrés par Supabase
+- ✅ Confirmation par email obligatoire
+- ✅ Système de récupération sécurisé
+- ✅ Accès dashboard protégé
+
+---
+
+## ℹ️ Notes Importantes
+
+- **Système d'inscription ouvert** : Tout administrateur peut créer un compte
+- **Confirmation email requise** : Les comptes doivent être vérifiés par email
+- **Pas de compte par défaut** : Le responsable doit créer son propre compte
+- Si besoin de restreindre les inscriptions, contactez le développeur

@@ -49,8 +49,8 @@ serve(async (req) => {
       });
     }
 
-    // Récupérer la clé secrète Paystack
-    const PAYSTACK_SECRET_KEY = Deno.env.get('PAYSTACK_SECRET_KEY');
+    // Récupérer la clé secrète Paystack LIVE depuis les secrets Supabase
+    const PAYSTACK_SECRET_KEY = Deno.env.get('PAYSTACK_SECRET_KEY_LIVE');
     
     if (!PAYSTACK_SECRET_KEY) {
       console.error('Clé secrète Paystack non configurée');

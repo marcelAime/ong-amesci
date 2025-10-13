@@ -12,10 +12,8 @@ serve(async (req) => {
   }
 
   try {
-    // CLÉS LIVE PAYSTACK - MODE PRODUCTION UNIQUEMENT
-    const PAYSTACK_PUBLIC_KEY = 'pk_live_2d8acc6eadf2bed8a74edb9669e1e33b02c6b709';
-    
-    console.log('Paystack LIVE mode - Key loaded:', PAYSTACK_PUBLIC_KEY.substring(0, 10) + '...');
+    // Récupérer la clé publique Paystack LIVE depuis les secrets Supabase
+    const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY_LIVE');
     
     if (!PAYSTACK_PUBLIC_KEY) {
       console.error('Paystack public key not configured in environment');
@@ -27,7 +25,6 @@ serve(async (req) => {
       });
     }
 
-    console.log('Returning Paystack key');
     return new Response(JSON.stringify({ 
       publicKey: PAYSTACK_PUBLIC_KEY 
     }), {

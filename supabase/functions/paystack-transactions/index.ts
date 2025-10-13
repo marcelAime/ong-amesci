@@ -37,6 +37,18 @@ serve(async (req) => {
       });
     }
 
+    // Check if user has admin role
+    const { data: hasAdmin, error: roleError } = await supabaseClient
+      .rpc('has_role', { _user_id: user.id, _role: 'admin' });
+
+    if (roleError || !hasAdmin) {
+      console.error('Role check error:', roleError);
+      return new Response(JSON.stringify({ error: 'Accès refusé - privilèges insuffisants' }), {
+        status: 403,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     // Récupérer la clé secrète Paystack
     const PAYSTACK_SECRET_KEY = Deno.env.get('PAYSTACK_SECRET_KEY');
     

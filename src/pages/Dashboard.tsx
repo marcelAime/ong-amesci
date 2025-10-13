@@ -8,6 +8,19 @@ import { ArrowLeft, RefreshCw, DollarSign, CreditCard, CheckCircle, Clock } from
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
 
+// Helper function to check user role
+const checkUserRole = async (userId: string, role: string): Promise<{ data: boolean | null, error: any }> => {
+  try {
+    const { data, error } = await (supabase as any).rpc('has_role', { 
+      _user_id: userId, 
+      _role: role 
+    });
+    return { data, error };
+  } catch (error) {
+    return { data: null, error };
+  }
+};
+
 interface Transaction {
   id: number;
   amount: number;
@@ -52,6 +65,16 @@ const Dashboard = () => {
     if (!user) {
       toast.error("Accès non autorisé");
       navigate("/auth");
+      return;
+    }
+    
+    // Check if user has admin role
+    const { data: hasAdmin, error: roleError } = await checkUserRole(user.id, 'admin');
+
+    if (roleError || !hasAdmin) {
+      toast.error("Accès refusé - privilèges insuffisants");
+      await supabase.auth.signOut();
+      navigate("/");
       return;
     }
     

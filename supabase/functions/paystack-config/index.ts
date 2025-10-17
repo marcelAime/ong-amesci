@@ -12,8 +12,8 @@ serve(async (req) => {
   }
 
   try {
-    // Récupérer la clé publique Paystack LIVE depuis les secrets Supabase
-    const PAYSTACK_PUBLIC_KEY = Deno.env.get('PAYSTACK_PUBLIC_KEY_LIVE');
+    // Clé publique Paystack LIVE
+    const PAYSTACK_PUBLIC_KEY = 'pk_live_2d8acc6eadf2bed8a74edb9669e1e33b02c6b709';
     
     if (!PAYSTACK_PUBLIC_KEY) {
       console.error('Paystack public key not configured in environment');

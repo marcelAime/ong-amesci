@@ -14,45 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      inscriptions: {
-        Row: {
-          created_at: string
-          email: string | null
-          eventbrite_id: string | null
-          id: string
-          nom: string
-          prenom: string
-          status: string | null
-          telephone: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          created_at?: string
-          email?: string | null
-          eventbrite_id?: string | null
-          id?: string
-          nom: string
-          prenom: string
-          status?: string | null
-          telephone: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          created_at?: string
-          email?: string | null
-          eventbrite_id?: string | null
-          id?: string
-          nom?: string
-          prenom?: string
-          status?: string | null
-          telephone?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Menu, X, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
-import ongLogo from "@/assets/ong-logo.jpg";
+import amesLogo from "@/assets/ames-logo.jpg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,7 +37,7 @@ const Navbar = () => {
             }}
           >
             <img 
-              src={ongLogo} 
+              src={amesLogo} 
               alt="AMES-CI Logo" 
               className="h-10 w-10 rounded-full object-cover"
             />

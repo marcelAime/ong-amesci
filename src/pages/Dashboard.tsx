@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, RefreshCw, DollarSign, CreditCard, CheckCircle, Clock } from "lucide-react";
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
+import Footer from "@/components/ames/Footer";
 
 // Helper function to check user role
 const checkUserRole = async (userId: string, role: string): Promise<{ data: boolean | null, error: any }> => {
@@ -326,6 +327,7 @@ const Dashboard = () => {
           </Card>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

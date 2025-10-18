@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Heart, Menu, X } from "lucide-react";
 import { useState } from "react";
+import ongLogo from "@/assets/ong-logo.jpg";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center gap-3">
             <img 
-              src="https://storage.googleapis.com/gpt-engineer-file-uploads/Q4sLhJ9wpwNtwORoW2IoENyfGm43/uploads/1758293373151-ong1.jpg" 
+              src={ongLogo} 
               alt="Logo O.N.G Santé" 
               className="w-10 h-10 rounded-full object-cover"
             />

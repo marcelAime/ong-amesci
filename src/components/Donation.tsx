@@ -122,16 +122,6 @@ const Donation = () => {
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
         subaccount: "ACCT_h3lryezmzveyo4e",
-        split: {
-          type: "flat",
-          bearer_type: "account",
-          subaccounts: [
-            {
-              subaccount: "ACCT_h3lryezmzveyo4e",
-              share: 100
-            }
-          ]
-        },
         metadata: {
           donor_name: donorName,
           message: message,

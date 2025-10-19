@@ -156,8 +156,17 @@ const Donation = () => {
         currency: 'XOF',
         channels: ['card', 'mobile_money', 'bank'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
-        label: "ONG AMES-CI",
         subaccount: "ACCT_h3lryezmzveyo4e",
+        split: {
+          type: "flat",
+          bearer_type: "account",
+          subaccounts: [
+            {
+              subaccount: "ACCT_h3lryezmzveyo4e",
+              share: 100
+            }
+          ]
+        },
         metadata: {
           custom_fields: [
             {

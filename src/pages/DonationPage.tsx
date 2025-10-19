@@ -154,8 +154,17 @@ const DonationPage = () => {
         amount: parseFloat(amount) * 100, // Paystack utilise les centimes
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
-        label: "ONG AMES-CI",
         subaccount: "ACCT_h3lryezmzveyo4e",
+        split: {
+          type: "flat",
+          bearer_type: "account",
+          subaccounts: [
+            {
+              subaccount: "ACCT_h3lryezmzveyo4e",
+              share: 100
+            }
+          ]
+        },
         metadata: {
           donor_name: donorInfo.name,
           donor_phone: donorInfo.phone,

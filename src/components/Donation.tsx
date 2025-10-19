@@ -121,10 +121,16 @@ const Donation = () => {
         amount: parseInt(amount) * 100, // Paystack utilise les centimes
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
+        label: "AMES-CI",
         metadata: {
           donor_name: donorName,
           message: message,
           custom_fields: [
+            {
+              display_name: "Organisation",
+              variable_name: "organisation",
+              value: "AMES-CI"
+            },
             {
               display_name: "Nom du donateur",
               variable_name: "donor_name",

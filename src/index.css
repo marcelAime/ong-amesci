@@ -158,3 +158,26 @@
     @apply transition-colors duration-200;
   }
 }
+
+@layer utilities {
+  /* Subtle background patterns with logo colors for non-home pages */
+  .bg-ames-pattern {
+    background: 
+      linear-gradient(135deg, hsl(var(--hope) / 0.03) 0%, transparent 50%),
+      linear-gradient(225deg, hsl(var(--trust) / 0.03) 0%, transparent 50%),
+      linear-gradient(315deg, hsl(var(--energy) / 0.02) 0%, transparent 50%),
+      hsl(var(--background));
+  }
+  
+  .bg-hope-accent {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--hope) / 0.05) 100%);
+  }
+  
+  .bg-trust-accent {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--trust) / 0.05) 100%);
+  }
+  
+  .bg-energy-accent {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--energy) / 0.05) 100%);
+  }
+}

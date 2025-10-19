@@ -8,6 +8,7 @@ import Activities from "@/components/ames/Activities";
 import VideoSection from "@/components/ames/VideoSection";
 import Gallery from "@/components/ames/Gallery";
 import News from "@/components/ames/News";
+import ElectoralCall from "@/components/ames/ElectoralCall";
 import Contact from "@/components/ames/Contact";
 import Donation from "@/components/ames/Donation";
 import Footer from "@/components/ames/Footer";
@@ -23,6 +24,7 @@ function App() {
       <Activities />
       <Gallery />
       <News />
+      <ElectoralCall />
       <Donation />
       <Contact />
       <Footer />

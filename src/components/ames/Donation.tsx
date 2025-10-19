@@ -156,6 +156,7 @@ const Donation = () => {
         currency: 'XOF',
         channels: ['card', 'mobile_money', 'bank'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
+        label: "AMES-CI",
         metadata: {
           custom_fields: [
             {
@@ -192,7 +193,7 @@ const Donation = () => {
   };
 
   return (
-    <section id="donate" className="py-20 bg-gradient-subtle">
+    <section id="donate" className="py-20 bg-trust-accent">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">

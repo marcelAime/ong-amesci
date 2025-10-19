@@ -154,7 +154,8 @@ const DonationPage = () => {
         amount: parseFloat(amount) * 100, // Paystack utilise les centimes
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
-        label: "AMES-CI",
+        label: "ONG AMES-CI",
+        subaccount: "ACCT_joe0w2c0abqa15v",
         metadata: {
           donor_name: donorInfo.name,
           donor_phone: donorInfo.phone,
@@ -163,7 +164,7 @@ const DonationPage = () => {
             {
               display_name: "Organisation",
               variable_name: "organisation",
-              value: "AMES-CI"
+              value: "ONG AMES-CI"
             },
             {
               display_name: "Nom du donateur",
@@ -175,7 +176,9 @@ const DonationPage = () => {
               variable_name: "donor_phone", 
               value: donorInfo.phone
             }
-          ]
+          ],
+          ong_name: "ONG AMES-CI",
+          website: "https://ong-ames-ci.org"
         },
         callback: function(response: any) {
           console.log('Paiement réussi:', response);

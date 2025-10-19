@@ -156,15 +156,18 @@ const Donation = () => {
         currency: 'XOF',
         channels: ['card', 'mobile_money', 'bank'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
-        label: "AMES-CI",
+        label: "ONG AMES-CI",
+        subaccount: "ACCT_joe0w2c0abqa15v",
         metadata: {
           custom_fields: [
             {
               display_name: "Organisation",
               variable_name: "organisation",
-              value: "AMES-CI"
+              value: "ONG AMES-CI"
             }
-          ]
+          ],
+          ong_name: "ONG AMES-CI",
+          website: "https://ong-ames-ci.org"
         },
         callback: function(response: any) {
           toast({

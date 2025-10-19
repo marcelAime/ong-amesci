@@ -6,6 +6,29 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+// Rate limiting map
+const rateLimits = new Map<string, { count: number; resetTime: number }>();
+
+const checkRateLimit = (identifier: string): boolean => {
+  const now = Date.now();
+  const limit = rateLimits.get(identifier);
+  
+  if (!limit || now > limit.resetTime) {
+    rateLimits.set(identifier, {
+      count: 1,
+      resetTime: now + 60000 // 1 minute window
+    });
+    return true;
+  }
+  
+  if (limit.count >= 10) { // Max 10 requests per minute
+    return false;
+  }
+  
+  limit.count++;
+  return true;
+};
+
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -13,10 +36,30 @@ serve(async (req) => {
   }
 
   try {
+    // Rate limiting check
+    const clientIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
+    if (!checkRateLimit(clientIp)) {
+      return new Response(JSON.stringify({ 
+        error: 'Trop de requêtes. Veuillez réessayer dans une minute.' 
+      }), {
+        status: 429,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     const { message } = await req.json();
     
-    if (!message) {
-      throw new Error('Message is required');
+    // Input validation
+    if (!message || typeof message !== 'string') {
+      throw new Error('Message invalide');
+    }
+
+    if (message.length > 500) {
+      throw new Error('Message trop long (max 500 caractères)');
+    }
+
+    if (message.trim().length === 0) {
+      throw new Error('Message vide');
     }
 
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
@@ -24,7 +67,7 @@ serve(async (req) => {
       throw new Error('OpenAI API key not configured');
     }
 
-    console.log('Received message:', message);
+    console.log('Received message from IP:', clientIp);
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',

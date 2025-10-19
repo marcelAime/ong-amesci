@@ -8,6 +8,17 @@ import { Heart, CreditCard, Smartphone, Building, Users, Banknote, Gift, Mail } 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { z } from "zod";
+
+// Validation schema
+const donationSchema = z.object({
+  amount: z.number()
+    .min(1000, 'Montant minimum: 1,000 FCFA')
+    .max(100000000, 'Montant maximum: 100,000,000 FCFA'),
+  email: z.string()
+    .email('Email invalide')
+    .max(255, 'Email trop long'),
+});
 
 const Donation = () => {
   const { t } = useLanguage();
@@ -26,7 +37,9 @@ const Donation = () => {
         const { data, error } = await supabase.functions.invoke('paystack-config');
         
         if (error) {
-          console.error('Erreur lors du chargement de la clé Paystack:', error);
+          if (import.meta.env.DEV) {
+            console.error('Erreur lors du chargement de la clé Paystack:', error);
+          }
           toast({
             title: "Erreur de configuration",
             description: "Impossible de charger la configuration de paiement",
@@ -37,10 +50,11 @@ const Donation = () => {
         
         if (data?.publicKey) {
           setPaystackKey(data.publicKey);
-          console.log('Clé Paystack chargée avec succès');
         }
       } catch (error) {
-        console.error('Erreur:', error);
+        if (import.meta.env.DEV) {
+          console.error('Erreur:', error);
+        }
       }
     };
     
@@ -54,9 +68,7 @@ const Donation = () => {
     const checkPaystack = () => {
       if ((window as any).PaystackPop) {
         setIsPaystackLoaded(true);
-        console.log('Paystack chargé avec succès');
       } else {
-        console.log('Paystack en cours de chargement...');
         setTimeout(checkPaystack, 100);
       }
     };
@@ -107,21 +119,14 @@ const Donation = () => {
   const handleDonate = () => {
     const amount = selectedAmount || parseFloat(customAmount);
     
-    // Validation du montant
-    if (!amount || amount < 1000) {
+    // Validation with zod schema
+    const validation = donationSchema.safeParse({ amount, email });
+    
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
       toast({
-        title: "Montant invalide",
-        description: "Le montant minimum est de 1,000 FCFA",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Validation de l'email
-    if (!email || !email.includes('@')) {
-      toast({
-        title: "Email requis",
-        description: "Veuillez entrer une adresse email valide",
+        title: "Validation échouée",
+        description: firstError.message,
         variant: "destructive"
       });
       return;
@@ -173,7 +178,6 @@ const Donation = () => {
             title: "Don effectué avec succès!",
             description: `Merci pour votre générosité. Référence: ${response.reference}`,
           });
-          console.log('Paiement réussi:', response);
         },
         onClose: function() {
           toast({
@@ -185,7 +189,9 @@ const Donation = () => {
       });
       handler.openIframe();
     } catch (error) {
-      console.error('Erreur Paystack:', error);
+      if (import.meta.env.DEV) {
+        console.error('Erreur Paystack:', error);
+      }
       toast({
         title: "Erreur de paiement",
         description: "Une erreur s'est produite. Veuillez réessayer.",

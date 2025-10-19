@@ -122,7 +122,7 @@ const Donation = () => {
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
         label: "ONG AMES-CI",
-        subaccount: "ACCT_joe0w2c0abqa15v",
+        subaccount: "ACCT_h3lryezmzveyo4e",
         metadata: {
           donor_name: donorName,
           message: message,

@@ -400,20 +400,13 @@ const DonationPage = () => {
 
                 {/* Donation Button */}
                 <Button
-                  onClick={handleDonation}
+                  onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
                   variant="hero"
                   size="lg"
                   className="w-full text-lg h-14"
-                  disabled={isLoading}
                 >
-                  {isLoading ? (
-                    "Traitement en cours..."
-                  ) : (
-                    <>
-                      <CreditCard className="w-5 h-5 mr-2" />
-                      Faire un don de {amount ? parseFloat(amount).toLocaleString() : '0'} FCFA
-                    </>
-                  )}
+                  <CreditCard className="w-5 h-5 mr-2" />
+                  Faire un don
                 </Button>
 
                 <p className="text-sm text-muted-foreground text-center mt-4">

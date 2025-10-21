@@ -40,7 +40,7 @@ const Navbar = () => {
                 {item.label}
               </a>
             ))}
-            <Button variant="hero" className="ml-4" onClick={() => window.location.href = '/donation'}>
+            <Button variant="hero" className="ml-4" onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}>
               Faire un don
             </Button>
           </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
                   {item.label}
                 </a>
               ))}
-              <Button variant="hero" className="mt-2" onClick={() => window.location.href = '/donation'}>
+              <Button variant="hero" className="mt-2" onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}>
                 Faire un don
               </Button>
             </div>

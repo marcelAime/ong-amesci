@@ -323,19 +323,12 @@ const Donation = () => {
 
               {/* Donate Button */}
               <Button 
-                onClick={handleDonate}
-                disabled={!isPaystackLoaded}
-                className="w-full h-14 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
+                className="w-full h-14 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all"
               >
                 <Heart className="w-6 h-6 mr-3" />
-                {!isPaystackLoaded ? 'Chargement...' : `Faire un don de ${(selectedAmount || parseFloat(customAmount) || 0).toLocaleString()} FCFA`}
+                Faire un don
               </Button>
-              
-              {!isPaystackLoaded && (
-                <p className="text-sm text-muted-foreground text-center mt-2">
-                  Initialisation du système de paiement...
-                </p>
-              )}
             </Card>
           </div>
 

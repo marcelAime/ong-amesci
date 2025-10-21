@@ -196,7 +196,7 @@ const Activities = () => {
               </Button>
               <Button 
                 variant="outline-white"
-                onClick={() => document.getElementById('donate')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
               >
                 Faire un don
               </Button>

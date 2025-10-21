@@ -36,7 +36,7 @@ const Hero = () => {
                 variant="hero" 
                 size="lg" 
                 className="group"
-                onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
               >
                 Faire un don
                 <Heart className="w-4 h-4 group-hover:scale-105 transition-transform" />

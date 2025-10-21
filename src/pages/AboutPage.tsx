@@ -93,7 +93,7 @@ const AboutPage = () => {
                   </p>
                 </div>
 
-                <Button variant="hero" size="lg" onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}>
+                <Button variant="hero" size="lg" onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}>
                   Faire un don
                   <Heart className="w-4 h-4 ml-2" />
                 </Button>
@@ -201,7 +201,7 @@ const AboutPage = () => {
                   variant="outline" 
                   size="lg" 
                   className="border-white text-white hover:bg-white hover:text-primary"
-                  onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
                 >
                   Faire un don
                 </Button>

@@ -302,7 +302,7 @@ const ContactPage = () => {
                     <Button 
                       variant="outline" 
                       className="w-full justify-start h-12"
-                      onClick={() => document.getElementById('donation')?.scrollIntoView({ behavior: 'smooth' })}
+                      onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
                     >
                       <Heart className="w-5 h-5 mr-3" />
                       Faire un don

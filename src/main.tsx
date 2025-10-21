@@ -9,6 +9,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import App from "./App.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
+import AdminManagement from "./pages/AdminManagement.tsx";
 import Auth from "./pages/Auth.tsx";
 import GalleryPage from "./pages/GalleryPage.tsx";
 import NewsPage from "./pages/NewsPage.tsx";
@@ -26,6 +27,7 @@ createRoot(document.getElementById("root")!).render(
               <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/admin-management" element={<AdminManagement />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/gallery" element={<GalleryPage />} />
                 <Route path="/news" element={<NewsPage />} />

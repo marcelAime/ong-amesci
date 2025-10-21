@@ -4,7 +4,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, RefreshCw, DollarSign, CreditCard, CheckCircle, Clock } from "lucide-react";
+import { ArrowLeft, RefreshCw, DollarSign, CreditCard, CheckCircle, Clock, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { Helmet } from "react-helmet-async";
 import Footer from "@/components/ames/Footer";
@@ -125,8 +125,8 @@ const Dashboard = () => {
         setLastUpdate(new Date());
       }
     } catch (error) {
-      console.error("Erreur:", error);
-      toast.error("Impossible de charger les transactions");
+      console.error("Transaction fetch error");
+      toast.error("Une erreur est survenue. Veuillez réessayer.");
     } finally {
       setLoading(false);
       setRefreshing(false);
@@ -215,6 +215,14 @@ const Dashboard = () => {
               >
                 <RefreshCw className={`h-4 w-4 mr-2 ${refreshing ? "animate-spin" : ""}`} />
                 Actualiser
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => navigate("/admin-management")}
+              >
+                <Shield className="h-4 w-4 mr-2" />
+                Gestion Admins
               </Button>
               <Button variant="destructive" size="sm" onClick={handleLogout}>
                 Déconnexion

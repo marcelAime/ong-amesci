@@ -323,11 +323,12 @@ const Donation = () => {
 
               {/* Donate Button */}
               <Button 
-                onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
+                onClick={handleDonate}
                 className="w-full h-14 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all"
+                disabled={!isPaystackLoaded || !paystackKey}
               >
                 <Heart className="w-6 h-6 mr-3" />
-                Faire un don
+                {!isPaystackLoaded ? 'Chargement...' : 'Faire un don'}
               </Button>
             </Card>
           </div>

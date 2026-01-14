@@ -170,7 +170,6 @@ const DonationPage = () => {
         amount: parseFloat(amount) * 100, // Paystack utilise les centimes
         currency: 'XOF', // Franc CFA
         ref: 'ong_donation_' + Date.now(),
-        subaccount: "ACCT_h3lryezmzveyo4e",
         metadata: {
           donor_name: donorInfo.name,
           donor_phone: donorInfo.phone,

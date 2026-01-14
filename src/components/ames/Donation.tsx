@@ -161,7 +161,6 @@ const Donation = () => {
         currency: 'XOF',
         channels: ['card', 'mobile_money', 'bank'],
         ref: 'AMES_' + Math.floor((Math.random() * 1000000000) + 1),
-        subaccount: "ACCT_h3lryezmzveyo4e",
         metadata: {
           custom_fields: [
             {

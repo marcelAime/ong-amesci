@@ -117,7 +117,7 @@ const DonationPage = () => {
                 </p>
 
                 <Button
-                  onClick={handleDonate}
+                  disabled
                   variant="hero"
                   size="lg"
                   className="text-lg h-16 px-12"

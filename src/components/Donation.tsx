@@ -350,7 +350,7 @@ const Donation = () => {
                 </div>
 
                 <Button 
-                  onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
+                  disabled
                   className="w-full h-12 text-lg"
                   size="lg"
                 >

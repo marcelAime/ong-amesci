@@ -117,7 +117,7 @@ const DonationPage = () => {
                 </p>
 
                 <Button
-                  onClick={handleDonate}
+                  disabled
                   variant="hero"
                   size="lg"
                   className="text-lg h-16 px-12"
@@ -201,7 +201,7 @@ const DonationPage = () => {
                 Votre contribution fait la différence. Rejoignez notre communauté de donateurs.
               </p>
               <Button
-                onClick={handleDonate}
+                disabled
                 className="bg-white text-primary hover:bg-white/90 text-lg h-14 px-10"
               >
                 <Heart className="w-5 h-5 mr-2" />

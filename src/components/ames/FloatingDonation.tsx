@@ -14,8 +14,8 @@ const FloatingDonation = () => {
     <>
       {/* Floating Button */}
       <Button
-        onClick={() => window.open('https://paystack.shop/pay/fyx1vv7xc2', '_blank')}
-        className="fixed bottom-6 right-6 z-50 h-auto px-6 py-3 rounded-full shadow-vibrant bg-accent hover:bg-accent/90 hover:scale-110 transition-all duration-300 flex items-center gap-2"
+        disabled
+        className="fixed bottom-6 right-6 z-50 h-auto px-6 py-3 rounded-full shadow-vibrant bg-accent hover:bg-accent/90 transition-all duration-300 flex items-center gap-2"
       >
         <Heart className="h-5 w-5 text-white animate-pulse" />
         <span className="text-white font-semibold text-sm">Faire un don</span>

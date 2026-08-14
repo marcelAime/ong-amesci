@@ -60,8 +60,8 @@ const Donation = () => {
               </p>
               
               <Button 
-                onClick={handleDonate}
-                className="h-14 px-12 text-lg bg-gradient-hero text-white hover:shadow-hope transition-all"
+                disabled
+                className="h-14 px-12 text-lg bg-gradient-hero text-white transition-all"
               >
                 <Heart className="w-6 h-6 mr-3" />
                 Faire un don maintenant
